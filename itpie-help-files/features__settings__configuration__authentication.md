@@ -1,0 +1,62 @@
+# Authentication
+
+Source: ITPIE:OPS Documentation — Authentication
+Source URL: https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html
+Document set: itpie-help-files
+Citation rule: every line below begins with the documentation page title and its URL. When answering from this document, always name the page title and link.
+
+## Content
+
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Authentication
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] The authentication subsystem encompasses sign in, lock out, session, password, and access token features and validations. The combinations of features and specific values for the validations are defined together in "profiles". See User Management for more details.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Warning
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] If this setting is changed, the ITPIE application server must be restarted for the change to take effect.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Use STIG Profile: Controls whether the STIG authentication profile is enforced. Defaults to disabled.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Profiles
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Following are the detailed configuration properties and values for each profile. These cannot be overridden in the configuration file, they are selected based on the configured profile.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Default
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Lockout
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Max Failed Access Attempts: The number of failed log in attempts before a user is locked out and may not sign in. Defaults to '5'.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Default Lockout TimeSpan: The time span a user is locked out for when a lockout occurs (optional). Defaults to '00:05:00'.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Password
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Required Length: The minimum length a password must be. Defaults to '15'.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Required Changed Chars: The number of characters that must be changed in a password. Defaults to '0'.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Required Unique Chars: The minimum number of unique characters which a password must contain. Defaults to '0'.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Require Uppercase: Whether passwords must contain a lower case ASCII character. Defaults to 'false'.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Require Lowercase: Whether passwords must contain a upper case ASCII character. Defaults to 'false'.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Require Digit: Whether passwords must contain a digit. Defaults to 'false'.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Require NonAlphanumeric: hether passwords must contain a non-alphanumeric character. Defaults to 'false'.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Prohibited Reuse Count: The number of new unique passwords before a password may be reused. Defaults to '1'.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Minimum Age: The minimum age of a password before it can be changed (optional).
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Maximum Age: The maximum age of a password before it is expired and requires changing (optional).
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Session
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] InactiveTimeSpan: The time span before a user is considered inactive and may not sign in (optional).
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] MaxAgeTimeSpan: The maximum age of a session until it cannot be used to sign in (optional). Defaults to '1.00:00:00'.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] ExpiresTimeSpan: The expiration time span of a session until it cannot be used to sign in (optional).
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] MaximumSessions: The maximum number of active sessions allowed (optional).
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] RequireReauthentication: Whether the user should reauthenticate when their role and/or permissions change. Defaults to 'true'.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Sign in
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] BannerMessage: The message to display on the log in page (optional).
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] STIG
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Lockout
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Max Failed Access Attempts: The number of failed log in attempts before a user is locked out and may not sign in. Defaults to '3'.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Default Lockout TimeSpan: The time span a user is locked out for when a lockout occurs (optional). Defaults to '00:15:00'.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Password
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Required Length: The minimum length a password must be. Defaults to '15'.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Required Changed Chars: The number of characters that must be changed in a password. Defaults to '8'.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Required Unique Chars: The minimum number of unique characters which a password must contain. Defaults to '1'.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Require Uppercase: Whether passwords must contain a lower case ASCII character. Defaults to 'true'.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Require Lowercase: Whether passwords must contain a upper case ASCII character. Defaults to 'true'.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Require Digit: Whether passwords must contain a digit. Defaults to 'true'.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Require NonAlphanumeric: hether passwords must contain a non-alphanumeric character. Defaults to 'true'.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Prohibited Reuse Count: The number of generations before a password may be reused. Defaults to '5'.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Minimum Age: The minimum age of a password before it can be changed (optional). Defaults to '1.00:00:00'.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Maximum Age: The maximum age of a password before it is expired and requires changing (optional). Defaults to '60.00:00:00'.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Session
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] InactiveTimeSpan: The time span before a user is considered inactive and may not sign in (optional). Defaults to '35.00:00:00'.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] MaxAgeTimeSpan: The maximum age of a session until it cannot be used to sign in (optional). Defaults to '08:00:00'.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] ExpiresTimeSpan: The expiration time span of a session until it cannot be used to sign in. Defaults to '00:10:00'.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] MaximumSessions: The maximum number of active sessions allowed (optional). Defaults to '3'.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] RequireReauthentication: Whether the user should reauthenticate when their role and/or permissions change. Defaults to 'true'.
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] Sign in
+[ITPIE:OPS Documentation | Authentication | https://itpie-hostname/documentation/content/features/settings/configuration/authentication.html] BannerMessage: The message to display on the log in page (optional). Defaults to 'You are accessing a U.S. Government (USG) Information System (IS)... '.

@@ -1,0 +1,24 @@
+# Generic REST APIs
+
+Source: ITPIE:OPS Documentation — Generic REST APIs
+Source URL: https://itpie-hostname/documentation/content/features/collection/collectors/generic-rest-api.html
+Document set: itpie-help-files
+Citation rule: every line below begins with the documentation page title and its URL. When answering from this document, always name the page title and link.
+
+## Content
+
+[ITPIE:OPS Documentation | Generic REST APIs | https://itpie-hostname/documentation/content/features/collection/collectors/generic-rest-api.html] Generic REST APIs
+[ITPIE:OPS Documentation | Generic REST APIs | https://itpie-hostname/documentation/content/features/collection/collectors/generic-rest-api.html] Background
+[ITPIE:OPS Documentation | Generic REST APIs | https://itpie-hostname/documentation/content/features/collection/collectors/generic-rest-api.html] Many network element managers allow users to retrieve data via HTTP using a public API. ITPIE has some collectors of this sort built into it, e.g. Cisco DNAC and Panorama. In order to allow for collections on a wider variety of devices, ITPIE also includes the concept of generic REST API collectors. This will collect on devices defined in JSON files that can be modified dynamically. ITPIE ships with several generic collector JSON files, and others can be created in response to customer needs and added dynamically without having to ship a new version of the application.
+[ITPIE:OPS Documentation | Generic REST APIs | https://itpie-hostname/documentation/content/features/collection/collectors/generic-rest-api.html] Generic REST API collectors are set up much the same as other collectors, but they include an additional step because you have to tell ITPIE which specific collector you want to use.
+[ITPIE:OPS Documentation | Generic REST APIs | https://itpie-hostname/documentation/content/features/collection/collectors/generic-rest-api.html] Collection Setup
+[ITPIE:OPS Documentation | Generic REST APIs | https://itpie-hostname/documentation/content/features/collection/collectors/generic-rest-api.html] Step 1: Enter Credentials
+[ITPIE:OPS Documentation | Generic REST APIs | https://itpie-hostname/documentation/content/features/collection/collectors/generic-rest-api.html] Navigate to Collection -> Credentials
+[ITPIE:OPS Documentation | Generic REST APIs | https://itpie-hostname/documentation/content/features/collection/collectors/generic-rest-api.html] Click on "Create Credential"
+[ITPIE:OPS Documentation | Generic REST APIs | https://itpie-hostname/documentation/content/features/collection/collectors/generic-rest-api.html] Change the Collector Type to Generic REST API
+[ITPIE:OPS Documentation | Generic REST APIs | https://itpie-hostname/documentation/content/features/collection/collectors/generic-rest-api.html] Select the appropriate collector from the Generic Collector Type dropdown.
+[ITPIE:OPS Documentation | Generic REST APIs | https://itpie-hostname/documentation/content/features/collection/collectors/generic-rest-api.html] The form will be populated with the fields needed to log into that collector. Fill them out just like for any other collector. Fields that are secret (e.g., passwords or API keys) will behave like password fields; their values will never be displayed in the browser, and if you want to update them, you will need to click the "Update" link and enter the new value.
+[ITPIE:OPS Documentation | Generic REST APIs | https://itpie-hostname/documentation/content/features/collection/collectors/generic-rest-api.html] Click Add Credentials
+[ITPIE:OPS Documentation | Generic REST APIs | https://itpie-hostname/documentation/content/features/collection/collectors/generic-rest-api.html] Step 2: Add a Target
+[ITPIE:OPS Documentation | Generic REST APIs | https://itpie-hostname/documentation/content/features/collection/collectors/generic-rest-api.html] Create a target for your generic collector. This will look very similar to other IP-based target screens such as SSH, with the addition of a Generic Collector Type dropdown. Unlike for credentials, the collector type you choose will have very little effect on the form fields available. The only possible change is in the port field; you may have a different default, or you may not have the option to select a different port at all. (Note that generic collectors do not support hostname-based collections at this time. You must have an IP address to collect from.)
+[ITPIE:OPS Documentation | Generic REST APIs | https://itpie-hostname/documentation/content/features/collection/collectors/generic-rest-api.html] Associate your target with the appropriate credential.

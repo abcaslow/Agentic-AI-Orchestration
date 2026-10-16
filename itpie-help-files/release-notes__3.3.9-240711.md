@@ -1,0 +1,76 @@
+# 3.3.9-240711 Release Notes
+
+Source: ITPIE:OPS Documentation — 3.3.9-240711 Release Notes
+Source URL: https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html
+Document set: itpie-help-files
+Citation rule: every line below begins with the documentation page title and its URL. When answering from this document, always name the page title and link.
+
+## Content
+
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] 3.3.9-240711 Release Notes
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] Authentication
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] Added support for External Identity Providers, including LDAP, Google (OAuth 2.0), and WS-Federation. See the user documentation for more details.
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] Added emergency account permission and command-line interface to allow access to the application during emergencies (for example, when external identity providers are not accessible). See the user documentation for more details.
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] CHANGED access-tokens API endpoint and added access token audit logging. From: DELETE api/user/access-tokens/{tokenKey} . To: POST api/user/access-tokens/revoke .
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: When a superuser resets a user’s password, the user is not required to reauthenticate.
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: When creating the initial superuser, an invalid password creates the account, but without a password to log in with.
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: A superuser can revoke their own superuser permission.
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: Several session removal events should push a logout to connected clients (including superuser revoke sessions, user self-service revoke session, and user log out from other tabs of the same session).
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: Several session expiration events should push a logout to connected clients (including activity-based session expiration as well as session max-age, if configured).
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: Open redirect on the LDAP login page ( login/ldap ).
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: (Hotfix 1) Password login is not allowed under the STIG profile
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] CHANGED: (Hotfix 1) Updated account lockout to 15 minutes
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: (Hotfix 1) Improved session handling & auditing
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: (Hotfix 2) Properly load authentication profile after rebooting on a STIG'ed application server
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: (Hotfix 4) All application sections can be controlled through user authorization (Options for Search & Discovery, Maps and Config Backup were added under edit/add user)
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: (Hotfix 5) Adding or modifying external identity providers leaked sensitive fields into audit log.
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] Collection
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: issue with how subnets are nested in the Collection Endpoints list, when in Network View
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: (Hotfix 4) Support IPs being re-used for a new device previously under collection as a different device (device replacement)
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: (Hotfix 2) Cisco IOS/IOS-XE Discovery Commands parse properly
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: (Hotfix 3) Parsing issue with ArubaOS Switch Interfaces
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: (Hotfix 4) Fingerprinting issue with Cisco Catalyst 8500
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] Maps
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] Added ability to draw a Box around items on the map, and add a label. This box is customizable and different from groups. Its useful for labeling groups, and doesn’t affect the objects layout or position on the map.
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] Improvements and updates have been made for L3 Subnets maps including in Add Devices and Subnets, Managing subnets on the map, Search & Filter, Subnets Context information, and L3 Relationships for Tunnels.
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] Add Node Panel has been updated to include better support for L3 nodes, including devices and subnets. In addition updated filter options include filtering by VRF, making it easier to map out a single VRF.
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] Device Neighbors table has been updated to show better information in L3 in the Device Details drawer.
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] Diff Maps has been updated to fade unchanged items on the map to better highlight differences.
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] Our updates to Annotations have been ported to Visio and will now export properly
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] Additional actions are now being logged to the Usage Statistics located in Settings.
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: (Hotfix 1) Add associated Networks checkbox under Add Nodes page works properly
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: (Hotfix 1) Filtering devices no longer causes error for some L1 maps
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: (Hotfix 1) Adding nodes on L1 Map no longer causes errors
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: (Hotfix 2) Display logical system name from provided devices in device details, add device views
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: (Hotfix 2) Improved order of the device neighbors table
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: (Hotfix 2) Improve detection of icon based on manufacturer type (case insensitive)
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: (Hotfix 2) Support rendering user provided device relationships
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: (Hotfix 2) Styled the item details drawer properly
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: (Hotfix 2) Properly reveal devices when removing applicable filter
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] Discovery
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] Aged Out Devices tab to show devices that have been removed from network (see also the relevant change in Settings)
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: (Hotfix 1) Aged out page loads properly
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] Search
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] Added a new UI column to show the Elapsed Time on reports that show time ranges: Find ARP and Arp History, Find Edge, Find Mac History, Find Mac All
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: (Hotfix 1) Type-ahead data loads properly
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] Custom Reports
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] Report Mailer configuration moved from Settings to Custom Reports section.
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] VRF Counts moved from Settings.
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] The builtin reports tab has been removed. All reports show up on the Custom Reports tab.
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: (Hotfix 2) Mail data properly migrated in upgrade
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] NVDM
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] Expanded User Provided Devices entity to include additional columns including Notes, VRF, and Logical System Name.
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] Entities are now managed directly from the Custom Entity page
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] Backups
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: (Hotfix 2) Downloading latest logs fixed
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] Export
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] Export target now takes an exact address (it no longer fixes it up) and does not have a place to specify the port.
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] Settings
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] Improved presentation of usage statistics
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] Removed LDAP settings, in favor of the new External Identity Providers settings. A “migrate” button should appear on the Settings screen if you have legacy settings to migrate.
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] Moved “Last Known Good” settings from the database to the Settings page and renamed to “Device Age-Out Period”. Also created an “Aged Out Devices” report (see Discovery)
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: (Hotfix 2) LDAP Migration supports settings when "Attributes" are absent
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] General
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: (Hotfix 1) Corrected documentation regarding RPM installation
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: (Hotfix 1) Enabled structured logging for cloud deployments
+[ITPIE:OPS Documentation | 3.3.9-240711 Release Notes | https://itpie-hostname/documentation/content/release-notes/3.3.9-240711.html] FIXED: (Hotfix 2) Support scoping in architecture diagram source
