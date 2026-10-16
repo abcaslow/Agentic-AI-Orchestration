@@ -1,57 +1,105 @@
 # Agentic-AI-Orchestration
 
-This repository holds course material for an 8-week "Agentic AI Orchestration with the Sim Mothership Platform" class, a Markdown capture of the UnitedwithCode / Smart New Deal website, and a Markdown copy of the ITPIE:OPS product documentation. The files are meant to be read by students, instructors, and AI agents that answer questions from them.
+This repository holds material for teaching and practising agentic AI orchestration with the Sim workflow platform. It contains an 8-week course (syllabus, labs, cost-control plan), a knowledge base of notes and emails on Sim, Jev and RAG, a Markdown copy of the ITPIE:OPS product help, and captured pages from the UnitedwithCode / Smart New Deal website.
 
 ## Contents
 
+- [aaochat-kb](#aaochat-kb)
 - [course](#course)
 - [itpie-help-files](#itpie-help-files)
 - [smartnewdeal](#smartnewdeal)
 
+## aaochat-kb
+
+Knowledge-base documents (session notes, analyses and saved email threads) on Sim workflows, Jev, RAG and related topics, for people building or teaching with the AAO chat assistant.
+
+
+### Overview
+
+- [README.md](aaochat-kb/README.md) — Guide to the aaochat Sim knowledge base: 31 source documents exported on 2026-10-15 for RAG about agentic AI orchestration
+
+### Documents
+
+- [1 Definition of Terms.pdf](aaochat-kb/documents/1%20Definition%20of%20Terms.pdf) — PDF: Definition of Terms (glossary document)
+- [combining-jev-llm-rag-notes-from-sf-oct-10.md](aaochat-kb/documents/combining-jev-llm-rag-notes-from-sf-oct-10.md) — Notes (10 Oct, SF) on combining Jev, an LLM and RAG in one workflow, in email-answer form
+- [sim-aggregate-workflow-block-frequency-analysis.md](aaochat-kb/documents/sim-aggregate-workflow-block-frequency-analysis.md) — Analysis counting block types across all workflows in a hosted Sim workspace (2026-10-13)
+- [sim-jev-notes-9-oct-in-sf.md](aaochat-kb/documents/sim-jev-notes-9-oct-in-sf.md) — Session notes (9 Oct) on what Jev (TypeSafe AI) is, how to run it and whether it fits in Sim workflows
+
+### Emails
+
+- [a-comparison-of-sim-workflows-to-jupyter-notebooks.md](aaochat-kb/documents/emails/a-comparison-of-sim-workflows-to-jupyter-notebooks.md) — Email: a comparison of sim workflows to jupyter notebooks
+- [bash-as-an-agentic-ai-tool.md](aaochat-kb/documents/emails/bash-as-an-agentic-ai-tool.md) — Email: bash as an agentic ai tool
+- [benefits-of-hosting-locally.md](aaochat-kb/documents/emails/benefits-of-hosting-locally.md) — Email: benefits of hosting locally
+- [bluehost-review-of-sim.md](aaochat-kb/documents/emails/bluehost-review-of-sim.md) — Email: Bluehost review of Sim
+- [competing-jev-models.md](aaochat-kb/documents/emails/competing-jev-models.md) — Email: competing jev models
+- [deploying-jev-and-llama-in-the-same-workflow.md](aaochat-kb/documents/emails/deploying-jev-and-llama-in-the-same-workflow.md) — Email: deploying jev and llama in the same workflow
+- [deploying-rag-jev-and-llama-in-the-same-workflow.md](aaochat-kb/documents/emails/deploying-rag-jev-and-llama-in-the-same-workflow.md) — Email: deploying rag, Jev and llama in the same workflow
+- [details-on-the-sim-function-block.md](aaochat-kb/documents/emails/details-on-the-sim-function-block.md) — Email: details on the sim function block
+- [fortune-mag-on-jev.md](aaochat-kb/documents/emails/fortune-mag-on-jev.md) — Email: fortune mag on jev
+- [instinct-ai-harness.md](aaochat-kb/documents/emails/instinct-ai-harness.md) — Email: instinct ai harness
+- [javascript-cheat-sheet-for-sim.md](aaochat-kb/documents/emails/javascript-cheat-sheet-for-sim.md) — Email: Javascript cheat sheet for sim
+- [javascript-notes-for-the-sim-function-workflow-block.md](aaochat-kb/documents/emails/javascript-notes-for-the-sim-function-workflow-block.md) — Email: javascript notes for the sim function workflow block
+- [knowledge-base-ingestion-post-training-paradigms-rlhf-rlvr-rlcd.md](aaochat-kb/documents/emails/knowledge-base-ingestion-post-training-paradigms-rlhf-rlvr-rlcd.md) — Email: Knowledge Base Ingestion: Post-Training Paradigms (RLHF, RLVR, RLCD)
+- [knowledge-base-socratic-architecture-pattern-in-hybrid-ai-stacks.md](aaochat-kb/documents/emails/knowledge-base-socratic-architecture-pattern-in-hybrid-ai-stacks.md) — Email: Knowledge Base: Socratic Architecture Pattern in Hybrid AI Stacks
+- [ontologies.md](aaochat-kb/documents/emails/ontologies.md) — Email: Ontologies
+- [rag-notes.md](aaochat-kb/documents/emails/rag-notes.md) — Email: RAG Notes
+- [rationale-for-our-aao-course-and-diogo-interview.md](aaochat-kb/documents/emails/rationale-for-our-aao-course-and-diogo-interview.md) — Email: rationale for our AAO course and Diogo interview
+- [recommendations-for-deploying-jev-with-sim-ai-workflows.md](aaochat-kb/documents/emails/recommendations-for-deploying-jev-with-sim-ai-workflows.md) — Email: recommendations for deploying jev with sim.ai workflows
+- [recommended-sim-workflows-to-start-with.md](aaochat-kb/documents/emails/recommended-sim-workflows-to-start-with.md) — Email: recommended sim workflows to start with
+- [sim-loops-custom-blocks-and-quick-reference.md](aaochat-kb/documents/emails/sim-loops-custom-blocks-and-quick-reference.md) — Email: sim loops custom blocks and quick reference
+- [sim-modular-workflow-building-blocks.md](aaochat-kb/documents/emails/sim-modular-workflow-building-blocks.md) — Email: Sim modular workflow building blocks
+- [snd-blog-post-on-future-of-work-with-nyu-professor.md](aaochat-kb/documents/emails/snd-blog-post-on-future-of-work-with-nyu-professor.md) — Email: snd blog post on future of work with nyu professor
+- [the-cost-statement-in-javascript.md](aaochat-kb/documents/emails/the-cost-statement-in-javascript.md) — Email: The cost statement in javascript
+- [the-origin-of-the-name-jev.md](aaochat-kb/documents/emails/the-origin-of-the-name-jev.md) — Email: the origin of the name jev
+- [the-sim-embedding-block.md](aaochat-kb/documents/emails/the-sim-embedding-block.md) — Email: The sim embedding block
+- [topaz-agents-in-2026.md](aaochat-kb/documents/emails/topaz-agents-in-2026.md) — Email: topaz agents in 2026
+- [vector-store-data-for-rag.md](aaochat-kb/documents/emails/vector-store-data-for-rag.md) — Email: Vector store data for RAG
+
 ## course
 
-Lecture-course materials for students and instructors of the Agentic AI Orchestration class on the Sim platform.
+Course materials for the 8-week "Agentic AI Orchestration with the Sim Mothership Platform" class, for instructors and students.
 
-- [01-syllabus.md](course/01-syllabus.md) — Course syllabus: 8-week schedule, format, delivery and instructor details
-- [03-labs.md](course/03-labs.md) — Part 03 hands-on student labs, each with a no-code Track A and a scripting Track B
-- [04-cost-control-plan.md](course/04-cost-control-plan.md) — Classroom cost-control and credit-budget policy for a ~25-student cohort
+- [01-syllabus.md](course/01-syllabus.md) — Course syllabus: instructor, 8-week format, delivery and module plan
+- [03-labs.md](course/03-labs.md) — Part 03: hands-on student labs (Track A no-code, Track B scripting)
+- [04-cost-control-plan.md](course/04-cost-control-plan.md) — Cost-control and credit-budget classroom policy for a cohort of about 25 students
 
 ## itpie-help-files
 
-A Markdown copy of the ITPIE:OPS product documentation, for administrators, users and AI assistants that need to cite its pages.
+Markdown export of the ITPIE:OPS product documentation (install, administration, features, release notes), for administrators and users of ITPIE.
+
 
 ### Administration
 
-- [administration__auditing.md](itpie-help-files/administration__auditing.md) — Administration guide: Auditing
-- [administration__authentication.md](itpie-help-files/administration__authentication.md) — Administration guide: Authentication
-- [administration__authorization.md](itpie-help-files/administration__authorization.md) — Administration guide: Authorization
-- [administration__backup-and-restore.md](itpie-help-files/administration__backup-and-restore.md) — Administration guide: Backup and Restore
-- [administration__data-protection.md](itpie-help-files/administration__data-protection.md) — Administration guide: Data Protection
-- [administration__database.md](itpie-help-files/administration__database.md) — Administration guide: Database
-- [administration__external-services.md](itpie-help-files/administration__external-services.md) — Administration guide: External Services
-- [administration__filesystem.md](itpie-help-files/administration__filesystem.md) — Administration guide: Filesystem
-- [administration__logging.md](itpie-help-files/administration__logging.md) — Administration guide: Logging
-- [administration__remote-agents.md](itpie-help-files/administration__remote-agents.md) — Administration guide: Remote Agents
-- [administration__systemd.md](itpie-help-files/administration__systemd.md) — Administration guide: Service Management
-- [administration__user-management.md](itpie-help-files/administration__user-management.md) — Administration guide: User Management
-- [administration__web-server.md](itpie-help-files/administration__web-server.md) — Administration guide: Web Server
+- [administration__auditing.md](itpie-help-files/administration__auditing.md) — Administration: Auditing
+- [administration__authentication.md](itpie-help-files/administration__authentication.md) — Administration: authentication setup
+- [administration__authorization.md](itpie-help-files/administration__authorization.md) — Administration: authorization setup
+- [administration__backup-and-restore.md](itpie-help-files/administration__backup-and-restore.md) — Administration: Backup and Restore
+- [administration__data-protection.md](itpie-help-files/administration__data-protection.md) — Administration: Data Protection
+- [administration__database.md](itpie-help-files/administration__database.md) — Administration: Database
+- [administration__external-services.md](itpie-help-files/administration__external-services.md) — Administration: External Services
+- [administration__filesystem.md](itpie-help-files/administration__filesystem.md) — Administration: Filesystem
+- [administration__logging.md](itpie-help-files/administration__logging.md) — Administration: Logging
+- [administration__remote-agents.md](itpie-help-files/administration__remote-agents.md) — Administration: Remote Agents
+- [administration__systemd.md](itpie-help-files/administration__systemd.md) — Administration: service management with systemd
+- [administration__user-management.md](itpie-help-files/administration__user-management.md) — Administration: managing users
+- [administration__web-server.md](itpie-help-files/administration__web-server.md) — Administration: Web Server
 
 ### Appendix
 
-- [appendix__third-party__scriban__builtins.md](itpie-help-files/appendix__third-party__scriban__builtins.md) — Third-party reference (scriban): Builtins documentation
-- [appendix__third-party__scriban__language.md](itpie-help-files/appendix__third-party__scriban__language.md) — Third-party reference (scriban): Language documentation
-- [appendix__third-party__scriban__scriban.md](itpie-help-files/appendix__third-party__scriban__scriban.md) — Third-party reference (scriban): scriban overview
-- [appendix__third-party__ssh__ssh.md](itpie-help-files/appendix__third-party__ssh__ssh.md) — Third-party reference (ssh): SSH overview
+- [appendix__third-party__scriban__builtins.md](itpie-help-files/appendix__third-party__scriban__builtins.md) — Third-party: Scriban built-in functions
+- [appendix__third-party__scriban__language.md](itpie-help-files/appendix__third-party__scriban__language.md) — Third-party: Scriban language reference
+- [appendix__third-party__scriban__scriban.md](itpie-help-files/appendix__third-party__scriban__scriban.md) — Third-party: Scriban templating overview
+- [appendix__third-party__ssh__ssh.md](itpie-help-files/appendix__third-party__ssh__ssh.md) — Third-party: SSH notes
 
 ### Features
 
 - [features__backups.md](itpie-help-files/features__backups.md) — Feature: Config Backups
 - [features__chatbot.md](itpie-help-files/features__chatbot.md) — Feature: ITPIE Chatbot
-- [features__collection__agents.md](itpie-help-files/features__collection__agents.md) — Network collection: Agents
-- [features__collection__collectors__aruba-clearpass.md](itpie-help-files/features__collection__collectors__aruba-clearpass.md) — Network collection: Aruba ClearPass
-- [features__collection__collectors__generic-rest-api.md](itpie-help-files/features__collection__collectors__generic-rest-api.md) — Network collection: Generic REST APIs
-- [features__collection__how-collection-works.md](itpie-help-files/features__collection__how-collection-works.md) — Network collection: How Collection Works
-- [features__collection__overview.md](itpie-help-files/features__collection__overview.md) — Network collection: Network Collection
+- [features__collection__agents.md](itpie-help-files/features__collection__agents.md) — Feature: Agents
+- [features__collection__collectors__aruba-clearpass.md](itpie-help-files/features__collection__collectors__aruba-clearpass.md) — Feature: Aruba ClearPass
+- [features__collection__collectors__generic-rest-api.md](itpie-help-files/features__collection__collectors__generic-rest-api.md) — Feature: Generic REST APIs
+- [features__collection__how-collection-works.md](itpie-help-files/features__collection__how-collection-works.md) — Feature: How Collection Works
+- [features__collection__overview.md](itpie-help-files/features__collection__overview.md) — Feature: Network Collection
 - [features__custom-reports.md](itpie-help-files/features__custom-reports.md) — Feature: Custom Reports
 - [features__device-details.md](itpie-help-files/features__device-details.md) — Feature: Device Details
 - [features__discovery.md](itpie-help-files/features__discovery.md) — Feature: Discovery
@@ -59,38 +107,38 @@ A Markdown copy of the ITPIE:OPS product documentation, for administrators, user
 - [features__manual-export.md](itpie-help-files/features__manual-export.md) — Feature: Manual Export
 - [features__maps.md](itpie-help-files/features__maps.md) — Feature: Maps
 - [features__network-data.md](itpie-help-files/features__network-data.md) — Feature: Network Data
-- [features__search-reference.md](itpie-help-files/features__search-reference.md) — Intelligent Search syntax reference
-- [features__search.md](itpie-help-files/features__search.md) — Intelligent Search user guide
-- [features__settings__about.md](itpie-help-files/features__settings__about.md) — Settings: About
-- [features__settings__configuration__authentication.md](itpie-help-files/features__settings__configuration__authentication.md) — Settings, configuration: Authentication
-- [features__settings__configuration__authorization.md](itpie-help-files/features__settings__configuration__authorization.md) — Settings, configuration: Authorization
-- [features__settings__configuration__collection.md](itpie-help-files/features__settings__configuration__collection.md) — Settings, configuration: Collection
-- [features__settings__configuration__contact.md](itpie-help-files/features__settings__configuration__contact.md) — Settings, configuration: Contact
-- [features__settings__configuration__data-classification.md](itpie-help-files/features__settings__configuration__data-classification.md) — Settings, configuration: Data Classification
-- [features__settings__configuration__data-retention.md](itpie-help-files/features__settings__configuration__data-retention.md) — Settings, configuration: Data Retention
-- [features__settings__configuration__external-identity-providers__google.md](itpie-help-files/features__settings__configuration__external-identity-providers__google.md) — Settings, external identity provider: Google
-- [features__settings__configuration__external-identity-providers__ldap.md](itpie-help-files/features__settings__configuration__external-identity-providers__ldap.md) — Settings, external identity provider: Directory Server (LDAP)
-- [features__settings__configuration__external-identity-providers__oidc.md](itpie-help-files/features__settings__configuration__external-identity-providers__oidc.md) — Settings, external identity provider: OpenID Connect (OIDC)
-- [features__settings__configuration__external-identity-providers__overview.md](itpie-help-files/features__settings__configuration__external-identity-providers__overview.md) — Settings, external identity provider: External Identity Providers
-- [features__settings__configuration__external-identity-providers__ws-federation.md](itpie-help-files/features__settings__configuration__external-identity-providers__ws-federation.md) — Settings, external identity provider: WS-Federation
-- [features__settings__configuration__features.md](itpie-help-files/features__settings__configuration__features.md) — Settings, configuration: Features
-- [features__settings__configuration__presentation.md](itpie-help-files/features__settings__configuration__presentation.md) — Settings, configuration: Presentation
-- [features__settings__configuration__smtp.md](itpie-help-files/features__settings__configuration__smtp.md) — Settings, configuration: Mail Server (SMTP)
-- [features__settings__configuration__tile-server.md](itpie-help-files/features__settings__configuration__tile-server.md) — Settings, configuration: Tile server
-- [features__settings__ou-management.md](itpie-help-files/features__settings__ou-management.md) — Settings: OU Management
-- [features__settings__preferences.md](itpie-help-files/features__settings__preferences.md) — Settings: Preferences
-- [features__settings__reset.md](itpie-help-files/features__settings__reset.md) — Settings: Reset
-- [features__settings__usage-statistics.md](itpie-help-files/features__settings__usage-statistics.md) — Settings: Usage Statistics
-- [features__settings__user-management.md](itpie-help-files/features__settings__user-management.md) — Settings: User Management
+- [features__search-reference.md](itpie-help-files/features__search-reference.md) — Intelligent Search reference (query syntax)
+- [features__search.md](itpie-help-files/features__search.md) — Intelligent Search feature overview
+- [features__settings__about.md](itpie-help-files/features__settings__about.md) — Feature: About
+- [features__settings__configuration__authentication.md](itpie-help-files/features__settings__configuration__authentication.md) — Settings: authentication configuration
+- [features__settings__configuration__authorization.md](itpie-help-files/features__settings__configuration__authorization.md) — Settings: authorization configuration
+- [features__settings__configuration__collection.md](itpie-help-files/features__settings__configuration__collection.md) — Feature: Collection
+- [features__settings__configuration__contact.md](itpie-help-files/features__settings__configuration__contact.md) — Feature: Contact
+- [features__settings__configuration__data-classification.md](itpie-help-files/features__settings__configuration__data-classification.md) — Feature: Data Classification
+- [features__settings__configuration__data-retention.md](itpie-help-files/features__settings__configuration__data-retention.md) — Feature: Data Retention
+- [features__settings__configuration__external-identity-providers__google.md](itpie-help-files/features__settings__configuration__external-identity-providers__google.md) — Feature: Google
+- [features__settings__configuration__external-identity-providers__ldap.md](itpie-help-files/features__settings__configuration__external-identity-providers__ldap.md) — Feature: Directory Server (LDAP)
+- [features__settings__configuration__external-identity-providers__oidc.md](itpie-help-files/features__settings__configuration__external-identity-providers__oidc.md) — Feature: OpenID Connect (OIDC)
+- [features__settings__configuration__external-identity-providers__overview.md](itpie-help-files/features__settings__configuration__external-identity-providers__overview.md) — Feature: External Identity Providers
+- [features__settings__configuration__external-identity-providers__ws-federation.md](itpie-help-files/features__settings__configuration__external-identity-providers__ws-federation.md) — Feature: WS-Federation
+- [features__settings__configuration__features.md](itpie-help-files/features__settings__configuration__features.md) — Feature: Features
+- [features__settings__configuration__presentation.md](itpie-help-files/features__settings__configuration__presentation.md) — Feature: Presentation
+- [features__settings__configuration__smtp.md](itpie-help-files/features__settings__configuration__smtp.md) — Feature: Mail Server (SMTP)
+- [features__settings__configuration__tile-server.md](itpie-help-files/features__settings__configuration__tile-server.md) — Feature: Tile server
+- [features__settings__ou-management.md](itpie-help-files/features__settings__ou-management.md) — Feature: OU Management
+- [features__settings__preferences.md](itpie-help-files/features__settings__preferences.md) — Feature: Preferences
+- [features__settings__reset.md](itpie-help-files/features__settings__reset.md) — Feature: Reset
+- [features__settings__usage-statistics.md](itpie-help-files/features__settings__usage-statistics.md) — Feature: Usage Statistics
+- [features__settings__user-management.md](itpie-help-files/features__settings__user-management.md) — Settings: user management screen
 - [features__zoneviz.md](itpie-help-files/features__zoneviz.md) — Feature: ZoneViz
 
 ### Install
 
-- [install__collector-agent.md](itpie-help-files/install__collector-agent.md) — Installation: Collector agent
-- [install__install.md](itpie-help-files/install__install.md) — Installation: Install
-- [install__machine-learning-agent.md](itpie-help-files/install__machine-learning-agent.md) — Installation: Machine-learning agent
-- [install__requirements.md](itpie-help-files/install__requirements.md) — Installation: Requirements
-- [install__upgrade.md](itpie-help-files/install__upgrade.md) — Installation: Upgrade
+- [install__collector-agent.md](itpie-help-files/install__collector-agent.md) — Install: Collector agent
+- [install__install.md](itpie-help-files/install__install.md) — Install: Install
+- [install__machine-learning-agent.md](itpie-help-files/install__machine-learning-agent.md) — Install: Machine-learning agent
+- [install__requirements.md](itpie-help-files/install__requirements.md) — Install: Requirements
+- [install__upgrade.md](itpie-help-files/install__upgrade.md) — Install: Upgrade
 
 ### Release notes
 
@@ -114,36 +162,42 @@ A Markdown copy of the ITPIE:OPS product documentation, for administrators, user
 
 ### Other pages
 
-- [api.md](itpie-help-files/api.md) — ITPIE:OPS API documentation
-- [content__index.md](itpie-help-files/content__index.md) — Documentation overview and table of contents
-- [eula.md](itpie-help-files/eula.md) — End user license agreement
+- [api.md](itpie-help-files/api.md) — API overview
+- [content__index.md](itpie-help-files/content__index.md) — Documentation overview (content index)
+- [eula.md](itpie-help-files/eula.md) — End User License Agreement
 - [faq.md](itpie-help-files/faq.md) — Frequently asked questions
 - [glossary.md](itpie-help-files/glossary.md) — Glossary of ITPIE terms
-- [index.md](itpie-help-files/index.md) — Documentation landing page for the ITPIE:OPS product
+- [index.md](itpie-help-files/index.md) — Documentation home page
 
 ## smartnewdeal
 
-Markdown captures of the smartnewdeal.com website (UnitedwithCode training company), for readers interested in its courses, programs and blog.
+Captured pages from the UnitedwithCode / Smart New Deal website (smartnewdeal.com), for readers interested in the company, its training programs and its blog.
 
-- [Contact-Us.md](smartnewdeal/Contact-Us.md) — Website contact page: form fields and the training contact email
-- [DS4HS-Scholarship.md](smartnewdeal/DS4HS-Scholarship.md) — Data Science for High School (DS4HS) scholarship program with virtual desktops
-- [Hands-on-Data-Science-Training.md](smartnewdeal/Hands-on-Data-Science-Training.md) — Hands-on Data Science course: online delivery with a personal virtual desktop
-- [Home.md](smartnewdeal/Home.md) — Website home page: virtual-desktop classrooms and the Smart New Deal
-- [Professional-Services.md](smartnewdeal/Professional-Services.md) — Professional services, including hosting your own grid of virtual desktops
-- [Smart-New-Deal.md](smartnewdeal/Smart-New-Deal.md) — The Smart New Deal proposal for cheaper cloud-based STEM education and its US patent
-- [Technical-Library.md](smartnewdeal/Technical-Library.md) — Library of technical documents on math, networking and programming education
-- [The-UnitedwithCode-Story.md](smartnewdeal/The-UnitedwithCode-Story.md) — About us: company history, founded 2017, and the Caslow family team
-- [Upgrading-Legacy-Network-Engineer.md](smartnewdeal/Upgrading-Legacy-Network-Engineer.md) — Course on moving legacy network engineers from CLI to API and automation
-- [Videos.md](smartnewdeal/Videos.md) — List of DS4HS lesson videos on Python programming
-- [blog-2020-Democratic-Candidates.md](smartnewdeal/blog-2020-Democratic-Candidates.md) — Blog: survey of the 2020 Democratic candidates by poll tier
-- [blog-Automation-vs-AI.md](smartnewdeal/blog-Automation-vs-AI.md) — Blog: how everyday automation differs from artificial intelligence
-- [blog-Categories-of-Software-Intelligence.md](smartnewdeal/blog-Categories-of-Software-Intelligence.md) — Blog: narrow, general and super AI, expert systems and machine learning
-- [blog-Entering-My-Junior-Year.md](smartnewdeal/blog-Entering-My-Junior-Year.md) — Blog: "Entering My Junior Year" (empty file)
-- [blog-Father-to-Son-Advice.md](smartnewdeal/blog-Father-to-Son-Advice.md) — Blog: advice that an extracurricular project helps a college application
-- [blog-Feeding-AI-Data.md](smartnewdeal/blog-Feeding-AI-Data.md) — Blog: why AI works best on problems with clear win/loss outcomes
-- [blog-Green-New-Deal.md](smartnewdeal/blog-Green-New-Deal.md) — Blog: a reading of the Green New Deal resolution (H.RES.-109)
-- [blog-IT-Automation-Ansible.md](smartnewdeal/blog-IT-Automation-Ansible.md) — Blog: automating IT infrastructure with Ansible and Terraform
-- [blog-Socialism-and-Capitalism.md](smartnewdeal/blog-Socialism-and-Capitalism.md) — Blog: defining socialism and capitalism and why they are not mutually exclusive
+
+### Site pages
+
+- [Contact-Us.md](smartnewdeal/Contact-Us.md) — Contact page and form fields
+- [DS4HS-Scholarship.md](smartnewdeal/DS4HS-Scholarship.md) — Data Science for High School (DS4HS) scholarship program
+- [Hands-on-Data-Science-Training.md](smartnewdeal/Hands-on-Data-Science-Training.md) — Hands-on data science training course for a data-driven world
+- [Home.md](smartnewdeal/Home.md) — Site home page: The Smart New Deal and DS4HS
+- [Professional-Services.md](smartnewdeal/Professional-Services.md) — Professional services, including hosted classrooms of virtual desktops
+- [Smart-New-Deal.md](smartnewdeal/Smart-New-Deal.md) — The Smart New Deal proposal for cheaper, more effective STEM education
+- [Technical-Library.md](smartnewdeal/Technical-Library.md) — Library of technical documents supporting technical education
+- [The-UnitedwithCode-Story.md](smartnewdeal/The-UnitedwithCode-Story.md) — About us: the UnitedwithCode story
+- [Upgrading-Legacy-Network-Engineer.md](smartnewdeal/Upgrading-Legacy-Network-Engineer.md) — Course on upgrading the network engineer skill set from CLI to API
+- [Videos.md](smartnewdeal/Videos.md) — DS4HS lesson videos
+
+### Blog posts
+
+- [blog-2020-Democratic-Candidates.md](smartnewdeal/blog-2020-Democratic-Candidates.md) — Blog: survey of the 2020 Democratic candidates by tier
+- [blog-Automation-vs-AI.md](smartnewdeal/blog-Automation-vs-AI.md) — Blog: automation versus artificial intelligence
+- [blog-Categories-of-Software-Intelligence.md](smartnewdeal/blog-Categories-of-Software-Intelligence.md) — Blog: categories of software intelligence
+- [blog-Entering-My-Junior-Year.md](smartnewdeal/blog-Entering-My-Junior-Year.md) — (empty file) Blog: entering my junior year
+- [blog-Father-to-Son-Advice.md](smartnewdeal/blog-Father-to-Son-Advice.md) — Blog: father-to-son advice on extracurricular projects for college applications
+- [blog-Feeding-AI-Data.md](smartnewdeal/blog-Feeding-AI-Data.md) — Blog: feeding data to AI
+- [blog-Green-New-Deal.md](smartnewdeal/blog-Green-New-Deal.md) — Blog: a son's reading of the Green New Deal resolution (H.RES.-109)
+- [blog-IT-Automation-Ansible.md](smartnewdeal/blog-IT-Automation-Ansible.md) — Blog: IT automation with Red Hat's Ansible
+- [blog-Socialism-and-Capitalism.md](smartnewdeal/blog-Socialism-and-Capitalism.md) — Blog: defining socialism and capitalism
 
 ## How this repository is updated
 
