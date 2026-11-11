@@ -16,11 +16,11 @@
       "path": "result"
     },
     {
-      "blockId": "c4a3aab8-d570-4dfc-bce2-2f25fe935103",
+      "blockId": "8f0de8d2-b5c4-435c-86a9-1df7e006ff6a",
       "path": "result"
     },
     {
-      "blockId": "8f0de8d2-b5c4-435c-86a9-1df7e006ff6a",
+      "blockId": "c4a3aab8-d570-4dfc-bce2-2f25fe935103",
       "path": "result"
     }
   ],
@@ -36,17 +36,17 @@
     },
     {
       "order": 2,
-      "block": "blockInventory",
-      "blockId": "c4a3aab8-d570-4dfc-bce2-2f25fe935103",
-      "path": "result",
-      "shows": "Agent blocks using Jev (count and names), Exa blocks (count and names), and Agent blocks not using Jev (count, names and models)"
-    },
-    {
-      "order": 3,
       "block": "totalTime",
       "blockId": "8f0de8d2-b5c4-435c-86a9-1df7e006ff6a",
       "path": "result",
       "shows": "The final answer (restaurant list, saved results, or nothing found) followed by the total time to execute"
+    },
+    {
+      "order": 3,
+      "block": "blockInventory",
+      "blockId": "c4a3aab8-d570-4dfc-bce2-2f25fe935103",
+      "path": "result",
+      "shows": "Agent blocks using Jev (count and names), Exa blocks (count and names), and Agent blocks not using Jev (count, names and models)"
     }
   ],
   "workflowInventory": {
