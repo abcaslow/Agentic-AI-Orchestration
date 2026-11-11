@@ -46,7 +46,7 @@
       "block": "blockInventory",
       "blockId": "c4a3aab8-d570-4dfc-bce2-2f25fe935103",
       "path": "result",
-      "shows": "Agent blocks using Jev, Exa blocks, and Agent blocks not using Jev (with models), each with the time it took in this run or 'did not run'"
+      "shows": "Agent blocks using Jev (with the question types each uses: choice, score, noul), Exa blocks, and Agent blocks not using Jev (with models), each with the time it took in this run or 'did not run'"
     }
   ],
   "workflowInventory": {
@@ -54,12 +54,51 @@
       "count": 6,
       "model": "jev-latest",
       "blocks": [
-        "jevRouteScorer",
-        "jevInstantGuard",
-        "jevQueryOptimizer",
-        "jevResultGuard",
-        "jevFinalCheck",
-        "jevCacheMatch"
+        {
+          "name": "jevRouteScorer",
+          "questionTypes": [
+            "noul"
+          ],
+          "questionSource": "static in block (instant_likely)"
+        },
+        {
+          "name": "jevInstantGuard",
+          "questionTypes": [
+            "noul"
+          ],
+          "questionSource": "screenInstant.result.guardQuestions"
+        },
+        {
+          "name": "jevQueryOptimizer",
+          "questionTypes": [
+            "noul"
+          ],
+          "questionSource": "buildJevCandidates.result.questions"
+        },
+        {
+          "name": "jevResultGuard",
+          "questionTypes": [
+            "noul"
+          ],
+          "questionSource": "normalizeResults.result.guardQuestions"
+        },
+        {
+          "name": "jevFinalCheck",
+          "questionTypes": [
+            "noul"
+          ],
+          "questionSource": "buildFinalCheck.result.questions"
+        },
+        {
+          "name": "jevCacheMatch",
+          "questionTypes": [
+            "choice"
+          ],
+          "questionSource": "cacheCandidates.result.questions"
+        }
+      ],
+      "questionTypesNotUsed": [
+        "score"
       ]
     },
     "exaBlocks": {
@@ -90,5 +129,13 @@
     "parseRequest": "~ time between clockStart.result.t and markStart.result.t",
     "restaurantFinder": "~ time between selectResults.result.t and buildFinalCheck.result.t",
     "notTimed": "Function, Condition and Table blocks (typically 30-130 ms each)"
+  },
+  "providerKeys": {
+    "note": "Workspace BYOK provider keys (Settings > BYOK); no keys are stored in the workflow. Sim charges only the per-run execution fee.",
+    "providers": {
+      "exa": "exaInstant, webSearch",
+      "google": "parseRequest, restaurantFinder (gemini-3.5-flash-lite)",
+      "typesafe": "Jev agents (jev-latest)"
+    }
   }
 }
