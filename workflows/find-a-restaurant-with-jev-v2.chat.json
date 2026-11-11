@@ -39,14 +39,14 @@
       "block": "totalTime",
       "blockId": "8f0de8d2-b5c4-435c-86a9-1df7e006ff6a",
       "path": "result",
-      "shows": "The final answer (restaurant list, saved results, or nothing found) followed by the total time to execute"
+      "shows": "The final answer (restaurant list, saved results, nothing found, or an off-topic notice for non-restaurant requests) followed by the total time to execute"
     },
     {
       "order": 3,
       "block": "blockInventory",
       "blockId": "c4a3aab8-d570-4dfc-bce2-2f25fe935103",
       "path": "result",
-      "shows": "Agent blocks using Jev (with the question types each uses: choice, score, noul), Exa blocks, and Agent blocks not using Jev (with models), each with the time it took in this run or 'did not run'"
+      "shows": "Agent blocks using Jev (with the question types each uses: choice, score, noul), Exa blocks, and Agent blocks not using Jev (with models and fallback), each with the time it took in this run or 'did not run'"
     }
   ],
   "workflowInventory": {
@@ -59,7 +59,7 @@
           "questionTypes": [
             "noul"
           ],
-          "questionSource": "static in block (instant_likely)"
+          "questionSource": "static in block (instant_likely, is_restaurant_search)"
         },
         {
           "name": "jevInstantGuard",
@@ -113,11 +113,19 @@
       "blocks": [
         {
           "name": "parseRequest",
-          "model": "gemini-3.5-flash-lite"
+          "model": "claude-haiku-5-5",
+          "thinkingLevel": "none",
+          "fallbackModels": [
+            "gemini-3.5-flash-lite"
+          ]
         },
         {
           "name": "restaurantFinder",
-          "model": "gemini-3.5-flash-lite"
+          "model": "claude-haiku-5-5",
+          "thinkingLevel": "none",
+          "fallbackModels": [
+            "gemini-3.5-flash-lite"
+          ]
         }
       ]
     }
@@ -133,8 +141,9 @@
   "providerKeys": {
     "note": "Workspace BYOK provider keys (Settings > BYOK); no keys are stored in the workflow. Sim charges only the per-run execution fee.",
     "providers": {
+      "anthropic": "parseRequest, restaurantFinder (claude-haiku-5-5, primary)",
       "exa": "exaInstant, webSearch",
-      "google": "parseRequest, restaurantFinder (gemini-3.5-flash-lite)",
+      "google": "parseRequest, restaurantFinder (gemini-3.5-flash-lite, fallback only)",
       "typesafe": "Jev agents (jev-latest)"
     }
   }
