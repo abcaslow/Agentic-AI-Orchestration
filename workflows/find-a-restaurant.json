@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "exportedAt": "2026-11-11T18:17:23.623Z",
+  "exportedAt": "2026-11-11T20:20:18.300Z",
   "workflow": {
     "id": "86b5037b-5508-49d7-a98c-df10b57cd6ae",
     "name": "find a restaurant",
@@ -768,7 +768,7 @@
         },
         "enabled": true,
         "horizontalHandles": true,
-        "height": 0,
+        "height": 48,
         "advancedMode": false,
         "errorEnabled": false,
         "triggerMode": false,
@@ -826,7 +826,7 @@
         },
         "enabled": true,
         "horizontalHandles": true,
-        "height": 0,
+        "height": 48,
         "advancedMode": false,
         "errorEnabled": false,
         "triggerMode": false,
@@ -884,7 +884,7 @@
         },
         "enabled": true,
         "horizontalHandles": true,
-        "height": 0,
+        "height": 48,
         "advancedMode": false,
         "errorEnabled": false,
         "triggerMode": false,
@@ -903,7 +903,65 @@
           "code": {
             "id": "code",
             "type": "code",
-            "value": "// Last chat message: which Agent and Exa blocks this workflow uses, the model or\n// search settings of each, and the time each took in this run.\n// Block list is fixed text: update it if Agent or Exa blocks are added, removed or change model.\n// The structured-output Agents and the Exa block expose no timing field, so each time is\n// measured between the timestamp Function blocks on either side of it (~ prefix; includes\n// a few tens of ms of block overhead).\nconst fmt = ms => (typeof ms !== 'number' || !Number.isFinite(ms) || ms < 0) ? 'did not run'\n  : ms < 1000 ? Math.round(ms) + ' ms' : (ms / 1000).toFixed(1) + ' s';\nconst ts = x => (x && x.t != null) ? (typeof x.t === 'number' ? x.t : Date.parse(x.t)) : NaN;\nconst gap = (a, b) => { const d = ts(b) - ts(a); return Number.isFinite(d) ? d : null; };\nconst approx = ms => ms === null ? 'did not run' : '~' + fmt(ms);\n\nconst t0 = <clockstart.result>;\nconst tParsed = <markstart.result>;\nconst tSearched = <exadone.result>;\nconst tFound = <finderdone.result>;\nconst totalMs = gap(t0, { t: Date.now() });\n\nconst exaResults = <websearch.results>;\nconst exaCount = Array.isArray(exaResults) ? exaResults.length : 0;\nconst found = <restaurantfinder.restaurants>;\nconst foundCount = Array.isArray(found) ? found.length : 0;\nconst type = String(<parserequest.restaurant_type> || '').trim();\nconst loc = String(<parserequest.location> || '').trim();\n\nreturn [\n  '---',\n  'About this workflow (time each block took in this run):',\n  '- Exa blocks (1):',\n  '  - webSearch (exa_search, type: fast, up to 8 results, page summaries): ' + approx(gap(tParsed, tSearched)) +\n    ' (' + exaCount + ' result' + (exaCount === 1 ? '' : 's') + ' returned)',\n  '- Agent blocks (2):',\n  '  - parseRequest (gemini-3.5-flash-lite): ' + approx(gap(t0, tParsed)) +\n    (type || loc ? ' (understood: ' + (type || '?') + ' near ' + (loc || '?') + ')' : ''),\n  '  - restaurantFinder (gemini-3.5-flash-lite): ' + approx(gap(tSearched, tFound)) +\n    ' (' + foundCount + ' restaurant' + (foundCount === 1 ? '' : 's') + ' returned)',\n  'Total time to execute: ' + (totalMs === null ? 'not available'\n    : totalMs < 60000 ? (totalMs / 1000).toFixed(1) + ' seconds'\n    : Math.floor(totalMs / 60000) + ' min ' + Math.round((totalMs % 60000) / 1000) + ' s')\n].join('\\n');"
+            "value": "// Last chat message: which Agent and Exa blocks this workflow uses, the model or\n// search settings of each, and the time each took in this run.\n// Block list is fixed text: update it if Agent or Exa blocks are added, removed or change model.\n// The structured-output Agents and the Exa block expose no timing field, so each time is\n// measured between the timestamp Function blocks on either side of it (~ prefix; includes\n// a few tens of ms of block overhead).\nconst fmt = ms => (typeof ms !== 'number' || !Number.isFinite(ms) || ms < 0) ? 'did not run'\n  : ms < 1000 ? Math.round(ms) + ' ms' : (ms / 1000).toFixed(1) + ' s';\nconst ts = x => (x && x.t != null) ? (typeof x.t === 'number' ? x.t : Date.parse(x.t)) : NaN;\nconst gap = (a, b) => { const d = ts(b) - ts(a); return Number.isFinite(d) ? d : null; };\nconst approx = ms => ms === null ? 'did not run' : '~' + fmt(ms);\n\nconst t0 = <clockstart.result>;\nconst tParsed = <markstart.result>;\nconst tSearched = <exadone.result>;\nconst tFound = <finderdone.result>;\n\nconst exaResults = <websearch.results>;\nconst exaCount = Array.isArray(exaResults) ? exaResults.length : 0;\nconst found = <restaurantfinder.restaurants>;\nconst foundCount = Array.isArray(found) ? found.length : 0;\nconst type = String(<parserequest.restaurant_type> || '').trim();\nconst loc = String(<parserequest.location> || '').trim();\n\nreturn [\n  '---',\n  'About this workflow (time each block took in this run):',\n  '- Exa blocks (1):',\n  '  - webSearch (exa_search, type: fast, up to 8 results, page summaries): ' + approx(gap(tParsed, tSearched)) +\n    ' (' + exaCount + ' result' + (exaCount === 1 ? '' : 's') + ' returned)',\n  '- Agent blocks (2):',\n  '  - parseRequest (gemini-3.5-flash-lite): ' + approx(gap(t0, tParsed)) +\n    (type || loc ? ' (understood: ' + (type || '?') + ' near ' + (loc || '?') + ')' : ''),\n  '  - restaurantFinder (gemini-3.5-flash-lite): ' + approx(gap(tSearched, tFound)) +\n    ' (' + foundCount + ' restaurant' + (foundCount === 1 ? '' : 's') + ' returned)'\n].join('\\n');"
+          },
+          "language": {
+            "id": "language",
+            "type": "dropdown",
+            "value": "javascript"
+          },
+          "sandboxId": {
+            "id": "sandboxId",
+            "type": "combobox",
+            "value": null
+          },
+          "secretScope": {
+            "id": "secretScope",
+            "type": "dropdown",
+            "value": "all"
+          },
+          "mountedSecrets": {
+            "id": "mountedSecrets",
+            "type": "dropdown",
+            "value": null
+          }
+        },
+        "outputs": {
+          "files": {
+            "type": "file[]",
+            "description": "Files the code wrote to /tmp/sim/outputs, ready to attach or upload downstream"
+          },
+          "result": {
+            "type": "json",
+            "description": "Structured result emitted by the executed code"
+          },
+          "stdout": {
+            "type": "string",
+            "description": "Console log output and debug messages from function execution"
+          }
+        },
+        "enabled": true,
+        "horizontalHandles": true,
+        "height": 48,
+        "advancedMode": false,
+        "errorEnabled": false,
+        "triggerMode": false,
+        "data": {},
+        "locked": false
+      },
+      "cf2fa7ed-659b-4684-b497-fcbfb895f6b7": {
+        "id": "cf2fa7ed-659b-4684-b497-fcbfb895f6b7",
+        "type": "function",
+        "name": "totalTime",
+        "position": {
+          "x": 5310,
+          "y": 736
+        },
+        "subBlocks": {
+          "code": {
+            "id": "code",
+            "type": "code",
+            "value": "// Last chat message: total workflow run time, from clockStart (first block after Start)\n// to this block, which runs after every path (rows saved or nothing found).\nconst t0 = Number((<clockstart.result> || {}).t);\nconst s = Number.isFinite(t0) ? (Date.now() - t0) / 1000 : null;\nreturn 'Total workflow run time: ' + (s === null ? 'not available'\n  : s < 60 ? s.toFixed(1) + ' seconds' : Math.floor(s / 60) + ' min ' + Math.round(s % 60) + ' s');"
           },
           "language": {
             "id": "language",
@@ -1359,6 +1417,64 @@
         "triggerMode": false,
         "data": {},
         "locked": false
+      },
+      "4c699507-d82e-400a-8735-4c7fd3779091": {
+        "id": "4c699507-d82e-400a-8735-4c7fd3779091",
+        "type": "function",
+        "name": "searchingMessage",
+        "position": {
+          "x": 580,
+          "y": 368
+        },
+        "subBlocks": {
+          "code": {
+            "id": "code",
+            "type": "code",
+            "value": "// First chat message, shown as soon as the run starts (runs in parallel with the search).\nconst msg = String(<start.input> || '').trim() ||\n  [String(<start.RestaurantType> || '').trim(), String(<start.location> || '').trim()].filter(Boolean).join(' in ');\nreturn 'searching for ' + msg;"
+          },
+          "language": {
+            "id": "language",
+            "type": "dropdown",
+            "value": "javascript"
+          },
+          "sandboxId": {
+            "id": "sandboxId",
+            "type": "combobox",
+            "value": null
+          },
+          "secretScope": {
+            "id": "secretScope",
+            "type": "dropdown",
+            "value": "all"
+          },
+          "mountedSecrets": {
+            "id": "mountedSecrets",
+            "type": "dropdown",
+            "value": null
+          }
+        },
+        "outputs": {
+          "files": {
+            "type": "file[]",
+            "description": "Files the code wrote to /tmp/sim/outputs, ready to attach or upload downstream"
+          },
+          "result": {
+            "type": "json",
+            "description": "Structured result emitted by the executed code"
+          },
+          "stdout": {
+            "type": "string",
+            "description": "Console log output and debug messages from function execution"
+          }
+        },
+        "enabled": true,
+        "horizontalHandles": true,
+        "height": 0,
+        "advancedMode": false,
+        "errorEnabled": false,
+        "triggerMode": false,
+        "data": {},
+        "locked": false
       }
     },
     "edges": [
@@ -1384,6 +1500,15 @@
         "id": "02bc95cd-bae0-48c9-9469-3ec7240e871b",
         "source": "f20938cb-1e5d-446d-801d-302ae4564289",
         "target": "404e800c-b9d5-4027-8032-dea1e48ff1e9",
+        "sourceHandle": "source",
+        "targetHandle": "target",
+        "type": "default",
+        "data": {}
+      },
+      {
+        "id": "736b927e-2ca1-4ed1-b325-b9e858926f9d",
+        "source": "59cb69d7-012e-4cb1-8c84-e8f635b12fdc",
+        "target": "4c699507-d82e-400a-8735-4c7fd3779091",
         "sourceHandle": "source",
         "targetHandle": "target",
         "type": "default",
@@ -1453,6 +1578,15 @@
         "data": {}
       },
       {
+        "id": "f439ebd1-2a6a-4be8-9ecc-4d3762bcc168",
+        "source": "fc1f9260-e8d7-48c8-b0e1-3c053400a37c",
+        "target": "cf2fa7ed-659b-4684-b497-fcbfb895f6b7",
+        "sourceHandle": "source",
+        "targetHandle": "target",
+        "type": "default",
+        "data": {}
+      },
+      {
         "id": "715c5d5a-ca3d-41f3-aad3-8d5a1a3f450c",
         "source": "fe120925-d8d2-416a-b09e-0572b6e220b2",
         "target": "f20938cb-1e5d-446d-801d-302ae4564289",
@@ -1480,7 +1614,7 @@
         "data": {}
       },
       {
-        "id": "d55b2988-3583-4b78-9a09-ce66c23a0778",
+        "id": "f24516a6-c699-422c-a50c-4211ed749df2",
         "source": "59cb69d7-012e-4cb1-8c84-e8f635b12fdc",
         "target": "fe120925-d8d2-416a-b09e-0572b6e220b2",
         "sourceHandle": "source",
@@ -1501,7 +1635,7 @@
     },
     "metadata": {
       "name": "find a restaurant",
-      "exportedAt": "2026-11-11T18:17:23.623Z"
+      "exportedAt": "2026-11-11T20:20:18.300Z"
     }
   }
 }
