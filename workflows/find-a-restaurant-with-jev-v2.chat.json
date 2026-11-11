@@ -46,7 +46,7 @@
       "block": "blockInventory",
       "blockId": "c4a3aab8-d570-4dfc-bce2-2f25fe935103",
       "path": "result",
-      "shows": "Agent blocks using Jev (count and names), Exa blocks (count and names), and Agent blocks not using Jev (count, names and models)"
+      "shows": "Agent blocks using Jev, Exa blocks, and Agent blocks not using Jev (with models), each with the time it took in this run or 'did not run'"
     }
   ],
   "workflowInventory": {
@@ -82,5 +82,13 @@
         }
       ]
     }
+  },
+  "blockTiming": {
+    "jevAgents": "Model call time each Agent reports (providerTiming.duration); within ~10 ms of the logged block time",
+    "exaInstant": "~ time between routeDecision.result.t and screenInstant.result.t",
+    "webSearch": "~ time between buildSearchPayload.result.t and normalizeResults.result.t",
+    "parseRequest": "~ time between clockStart.result.t and markStart.result.t",
+    "restaurantFinder": "~ time between selectResults.result.t and buildFinalCheck.result.t",
+    "notTimed": "Function, Condition and Table blocks (typically 30-130 ms each)"
   }
 }
