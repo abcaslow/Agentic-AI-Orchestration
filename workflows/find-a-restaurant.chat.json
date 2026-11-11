@@ -1,0 +1,75 @@
+{
+  "identifier": "oldchow",
+  "url": "https://www.sim.ai/chat/oldchow",
+  "title": "Find a Restaurant",
+  "description": "Tell me a cuisine and a city and I'll find five places with address, phone, and hours.",
+  "isActive": true,
+  "authType": "public",
+  "allowedEmails": [],
+  "customizations": {
+    "primaryColor": "var(--brand-hover)",
+    "welcomeMessage": "What kind of restaurant are you looking for, and where? For example: Indian restaurants in Berkeley CA"
+  },
+  "outputConfigs": [
+    {
+      "blockId": "6172b6d6-617a-4951-b863-7da54f3bd878",
+      "path": "summary"
+    },
+    {
+      "blockId": "fc1f9260-e8d7-48c8-b0e1-3c053400a37c",
+      "path": "result"
+    }
+  ],
+  "includeThinking": false,
+  "includeToolCalls": false,
+  "displayedMessages": [
+    {
+      "order": 1,
+      "block": "restaurantFinder",
+      "blockId": "6172b6d6-617a-4951-b863-7da54f3bd878",
+      "path": "summary",
+      "shows": "One short line per restaurant found"
+    },
+    {
+      "order": 2,
+      "block": "blockInventory",
+      "blockId": "fc1f9260-e8d7-48c8-b0e1-3c053400a37c",
+      "path": "result",
+      "shows": "Exa block and Agent blocks (with models), each with the time it took in this run or 'did not run', plus total time to execute"
+    }
+  ],
+  "workflowInventory": {
+    "exaBlocks": {
+      "count": 1,
+      "blocks": [
+        {
+          "name": "webSearch",
+          "operation": "exa_search",
+          "type": "fast",
+          "numResults": 8,
+          "summary": true
+        }
+      ]
+    },
+    "agentBlocks": {
+      "count": 2,
+      "blocks": [
+        {
+          "name": "parseRequest",
+          "model": "gemini-3.5-flash-lite"
+        },
+        {
+          "name": "restaurantFinder",
+          "model": "gemini-3.5-flash-lite"
+        }
+      ]
+    }
+  },
+  "blockTiming": {
+    "parseRequest": "~ time between clockStart.result.t and markStart.result.t",
+    "webSearch": "~ time between markStart.result.t and exaDone.result.t",
+    "restaurantFinder": "~ time between exaDone.result.t and finderDone.result.t",
+    "total": "clockStart.result.t to the moment blockInventory runs",
+    "notTimed": "Function, Condition and Table blocks"
+  }
+}

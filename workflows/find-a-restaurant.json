@@ -1,0 +1,1507 @@
+{
+  "version": "1.0",
+  "exportedAt": "2026-11-11T18:17:23.623Z",
+  "workflow": {
+    "id": "86b5037b-5508-49d7-a98c-df10b57cd6ae",
+    "name": "find a restaurant",
+    "description": null,
+    "workspaceId": "19e4fb7d-7008-4b24-8217-5c0f83d3b0c0",
+    "folderPath": "/"
+  },
+  "state": {
+    "blocks": {
+      "f20938cb-1e5d-446d-801d-302ae4564289": {
+        "id": "f20938cb-1e5d-446d-801d-302ae4564289",
+        "type": "agent",
+        "name": "parseRequest",
+        "position": {
+          "x": 1010,
+          "y": 240
+        },
+        "subBlocks": {
+          "files": {
+            "id": "files",
+            "type": "short-input",
+            "value": null
+          },
+          "model": {
+            "id": "model",
+            "type": "combobox",
+            "value": "gemini-3.5-flash-lite"
+          },
+          "tools": {
+            "id": "tools",
+            "type": "tool-input",
+            "value": []
+          },
+          "apiKey": {
+            "id": "apiKey",
+            "type": "short-input",
+            "value": null
+          },
+          "skills": {
+            "id": "skills",
+            "type": "skill-input",
+            "value": null
+          },
+          "messages": {
+            "id": "messages",
+            "type": "messages-input",
+            "value": [
+              {
+                "role": "user",
+                "content": "CHAT MESSAGE:\n<start.input>\n\nFALLBACK restaurant type: <start.RestaurantType>\nFALLBACK location: <start.location>"
+              },
+              {
+                "role": "system",
+                "content": "You extract a restaurant search request from a short free-text message.\n\nReturn two fields:\n- restaurant_type: the cuisine or restaurant category the user wants (e.g. \"Indian\", \"sushi\", \"24 hour diner\", \"sports bar\"). Strip filler words like \"restaurants\", \"places\", \"food\", \"near me\".\n- location: the city, neighborhood, ZIP code, or address to search near (e.g. \"Berkeley CA\", \"Zip Code 21210\", \"Reston Virginia\").\n\nRules:\n- Use the CHAT MESSAGE when it contains the information.\n- If the chat message is empty or is missing one of the two values, use the corresponding FALLBACK value supplied below for the missing one.\n- Never invent a location that is not stated in the message or the fallback.\n- Output the values exactly as the user expressed them, lightly normalized (trim whitespace, keep the state or ZIP)."
+              }
+            ]
+          },
+          "maxTokens": {
+            "id": "maxTokens",
+            "type": "short-input",
+            "value": "2000"
+          },
+          "verbosity": {
+            "id": "verbosity",
+            "type": "combobox",
+            "value": null
+          },
+          "memoryType": {
+            "id": "memoryType",
+            "type": "dropdown",
+            "value": "none"
+          },
+          "temperature": {
+            "id": "temperature",
+            "type": "slider",
+            "value": 0
+          },
+          "azureEndpoint": {
+            "id": "azureEndpoint",
+            "type": "short-input",
+            "value": null
+          },
+          "bedrockRegion": {
+            "id": "bedrockRegion",
+            "type": "short-input",
+            "value": null
+          },
+          "promptCaching": {
+            "id": "promptCaching",
+            "type": "switch",
+            "value": null
+          },
+          "thinkingLevel": {
+            "id": "thinkingLevel",
+            "type": "combobox",
+            "value": "none"
+          },
+          "vertexProject": {
+            "id": "vertexProject",
+            "type": "short-input",
+            "value": null
+          },
+          "conversationId": {
+            "id": "conversationId",
+            "type": "short-input",
+            "value": null
+          },
+          "responseFormat": {
+            "id": "responseFormat",
+            "type": "code",
+            "value": "{\n  \"name\": \"parsed_request\",\n  \"schema\": {\n    \"additionalProperties\": false,\n    \"properties\": {\n      \"location\": {\n        \"description\": \"City, neighborhood, ZIP code, or address\",\n        \"type\": \"string\"\n      },\n      \"restaurant_type\": {\n        \"description\": \"Cuisine or restaurant category\",\n        \"type\": \"string\"\n      }\n    },\n    \"required\": [\n      \"restaurant_type\",\n      \"location\"\n    ],\n    \"type\": \"object\"\n  },\n  \"strict\": true\n}"
+          },
+          "vertexLocation": {
+            "id": "vertexLocation",
+            "type": "short-input",
+            "value": null
+          },
+          "attachmentFiles": {
+            "id": "attachmentFiles",
+            "type": "file-upload",
+            "value": null
+          },
+          "azureApiVersion": {
+            "id": "azureApiVersion",
+            "type": "short-input",
+            "value": null
+          },
+          "reasoningEffort": {
+            "id": "reasoningEffort",
+            "type": "combobox",
+            "value": null
+          },
+          "bedrockSecretKey": {
+            "id": "bedrockSecretKey",
+            "type": "short-input",
+            "value": null
+          },
+          "vertexCredential": {
+            "id": "vertexCredential",
+            "type": "oauth-input",
+            "value": null
+          },
+          "slidingWindowSize": {
+            "id": "slidingWindowSize",
+            "type": "short-input",
+            "value": null
+          },
+          "bedrockAccessKeyId": {
+            "id": "bedrockAccessKeyId",
+            "type": "short-input",
+            "value": null
+          },
+          "slidingWindowTokens": {
+            "id": "slidingWindowTokens",
+            "type": "short-input",
+            "value": null
+          },
+          "previousInteractionId": {
+            "id": "previousInteractionId",
+            "type": "short-input",
+            "value": null
+          },
+          "vertexManualCredential": {
+            "id": "vertexManualCredential",
+            "type": "short-input",
+            "value": null
+          }
+        },
+        "outputs": {
+          "cost": {
+            "type": "json",
+            "description": "Cost of the API call"
+          },
+          "model": {
+            "type": "string",
+            "description": "Model used for generation"
+          },
+          "tokens": {
+            "type": "json",
+            "description": "Token usage statistics"
+          },
+          "content": {
+            "type": "string",
+            "description": "Generated response content"
+          },
+          "toolCalls": {
+            "type": "json",
+            "description": "Tool calls made"
+          },
+          "providerTiming": {
+            "type": "json",
+            "description": "Provider timing information"
+          }
+        },
+        "enabled": true,
+        "horizontalHandles": true,
+        "height": 48,
+        "advancedMode": false,
+        "errorEnabled": false,
+        "triggerMode": false,
+        "data": {
+          "canonicalModes": {
+            "files": "basic",
+            "vertexCredential": "basic"
+          }
+        },
+        "locked": false
+      },
+      "7f07d685-1eec-4430-8a39-a9887b61909e": {
+        "id": "7f07d685-1eec-4430-8a39-a9887b61909e",
+        "type": "condition",
+        "name": "hasRows",
+        "position": {
+          "x": 4020,
+          "y": 420
+        },
+        "subBlocks": {
+          "conditions": {
+            "id": "conditions",
+            "type": "condition-input",
+            "value": "[{\"title\":\"if\",\"value\":\"Array.isArray(<buildRows.result>) && <buildRows.result>.length > 0\",\"id\":\"7f07d685-1eec-4430-8a39-a9887b61909e-if\"},{\"title\":\"else\",\"value\":\"\",\"id\":\"7f07d685-1eec-4430-8a39-a9887b61909e-else\"}]"
+          }
+        },
+        "outputs": {
+          "selectedPath": {
+            "type": "json",
+            "description": "Selected execution path"
+          },
+          "selectedOption": {
+            "type": "string",
+            "description": "Selected condition option ID"
+          },
+          "conditionResult": {
+            "type": "boolean",
+            "description": "Condition result"
+          }
+        },
+        "enabled": true,
+        "horizontalHandles": true,
+        "height": 136,
+        "advancedMode": false,
+        "errorEnabled": false,
+        "triggerMode": false,
+        "data": {},
+        "locked": false
+      },
+      "6172b6d6-617a-4951-b863-7da54f3bd878": {
+        "id": "6172b6d6-617a-4951-b863-7da54f3bd878",
+        "type": "agent",
+        "name": "restaurantFinder",
+        "position": {
+          "x": 2730,
+          "y": 150
+        },
+        "subBlocks": {
+          "files": {
+            "id": "files",
+            "type": "short-input",
+            "value": null
+          },
+          "model": {
+            "id": "model",
+            "type": "combobox",
+            "value": "gemini-3.5-flash-lite"
+          },
+          "tools": {
+            "id": "tools",
+            "type": "tool-input",
+            "value": []
+          },
+          "apiKey": {
+            "id": "apiKey",
+            "type": "short-input",
+            "value": null
+          },
+          "skills": {
+            "id": "skills",
+            "type": "skill-input",
+            "value": null
+          },
+          "messages": {
+            "id": "messages",
+            "type": "messages-input",
+            "value": [
+              {
+                "role": "system",
+                "content": "You format restaurant search results. You have NO tools and cannot look anything up — you work only from the JSON search results supplied in the user message.\n\nReturn exactly 5 DISTINCT restaurants (5 different businesses; multiple pages about the same place count once).\n\nCUISINE MATCH — be inclusive, not purist: include a restaurant when the requested cuisine or dish is a SIGNIFICANT part of what it serves. It does not have to be the restaurant's whole identity. A seafood or Chesapeake restaurant known for crab cakes counts for \"crab\". A pan-Asian place with a real Thai menu counts for \"Thai\". Only exclude a result when the requested cuisine is clearly absent from it.\n\nLOCATION: must be in or immediately serving the requested town. Skip places in a different town. Skip anything the results indicate is permanently closed.\n\nGROUNDING IS ABSOLUTE and overrides everything above: every name, address, phone, and hours value must appear verbatim in the supplied results. NEVER invent, infer, or complete a detail from your own knowledge. If a field is not in the results, use the exact string \"Not listed\". A qualifying restaurant with missing fields is still a valid entry — include it with \"Not listed\" rather than dropping it.\n\nOnly if fewer than 5 qualifying restaurants exist in the results, return what you have and say so plainly in the summary. Do not invent entries to reach 5.\n\nBrevity: hours compact, e.g. \"Mon-Fri 11am-9pm; Sat-Sun 12-10pm\". No parentheticals, no per-source commentary. Summary is one short line per restaurant."
+              },
+              {
+                "role": "user",
+                "content": "Restaurant type: <parseRequest.restaurant_type>\nTown or city: <parseRequest.location>\n\nSearch results (JSON):\n<webSearch.results>"
+              }
+            ]
+          },
+          "maxTokens": {
+            "id": "maxTokens",
+            "type": "short-input",
+            "value": "8000"
+          },
+          "verbosity": {
+            "id": "verbosity",
+            "type": "combobox",
+            "value": null
+          },
+          "memoryType": {
+            "id": "memoryType",
+            "type": "dropdown",
+            "value": "none"
+          },
+          "temperature": {
+            "id": "temperature",
+            "type": "slider",
+            "value": 0.2
+          },
+          "azureEndpoint": {
+            "id": "azureEndpoint",
+            "type": "short-input",
+            "value": null
+          },
+          "bedrockRegion": {
+            "id": "bedrockRegion",
+            "type": "short-input",
+            "value": null
+          },
+          "promptCaching": {
+            "id": "promptCaching",
+            "type": "switch",
+            "value": null
+          },
+          "thinkingLevel": {
+            "id": "thinkingLevel",
+            "type": "combobox",
+            "value": ""
+          },
+          "vertexProject": {
+            "id": "vertexProject",
+            "type": "short-input",
+            "value": null
+          },
+          "conversationId": {
+            "id": "conversationId",
+            "type": "short-input",
+            "value": null
+          },
+          "responseFormat": {
+            "id": "responseFormat",
+            "type": "code",
+            "value": "{\n  \"name\": \"restaurant_table\",\n  \"schema\": {\n    \"additionalProperties\": false,\n    \"properties\": {\n      \"restaurants\": {\n        \"description\": \"Exactly 5 distinct restaurants when verifiable\",\n        \"items\": {\n          \"additionalProperties\": false,\n          \"properties\": {\n            \"address\": {\n              \"description\": \"Full street address, or Not listed\",\n              \"type\": \"string\"\n            },\n            \"hours\": {\n              \"description\": \"Hours of operation, or Not listed\",\n              \"type\": \"string\"\n            },\n            \"phone\": {\n              \"description\": \"Phone number, or Not listed\",\n              \"type\": \"string\"\n            },\n            \"restaurant_name\": {\n              \"type\": \"string\"\n            }\n          },\n          \"required\": [\n            \"restaurant_name\",\n            \"address\",\n            \"phone\",\n            \"hours\"\n          ],\n          \"type\": \"object\"\n        },\n        \"type\": \"array\"\n      },\n      \"summary\": {\n        \"description\": \"Brief plain-text summary: one short line per restaurant\",\n        \"type\": \"string\"\n      }\n    },\n    \"required\": [\n      \"restaurants\",\n      \"summary\"\n    ],\n    \"type\": \"object\"\n  },\n  \"strict\": true\n}"
+          },
+          "vertexLocation": {
+            "id": "vertexLocation",
+            "type": "short-input",
+            "value": null
+          },
+          "attachmentFiles": {
+            "id": "attachmentFiles",
+            "type": "file-upload",
+            "value": null
+          },
+          "azureApiVersion": {
+            "id": "azureApiVersion",
+            "type": "short-input",
+            "value": null
+          },
+          "reasoningEffort": {
+            "id": "reasoningEffort",
+            "type": "combobox",
+            "value": null
+          },
+          "bedrockSecretKey": {
+            "id": "bedrockSecretKey",
+            "type": "short-input",
+            "value": null
+          },
+          "vertexCredential": {
+            "id": "vertexCredential",
+            "type": "oauth-input",
+            "value": null
+          },
+          "slidingWindowSize": {
+            "id": "slidingWindowSize",
+            "type": "short-input",
+            "value": null
+          },
+          "bedrockAccessKeyId": {
+            "id": "bedrockAccessKeyId",
+            "type": "short-input",
+            "value": null
+          },
+          "slidingWindowTokens": {
+            "id": "slidingWindowTokens",
+            "type": "short-input",
+            "value": null
+          },
+          "previousInteractionId": {
+            "id": "previousInteractionId",
+            "type": "short-input",
+            "value": null
+          },
+          "vertexManualCredential": {
+            "id": "vertexManualCredential",
+            "type": "short-input",
+            "value": null
+          }
+        },
+        "outputs": {
+          "cost": {
+            "type": "json",
+            "description": "Cost of the API call"
+          },
+          "model": {
+            "type": "string",
+            "description": "Model used for generation"
+          },
+          "tokens": {
+            "type": "json",
+            "description": "Token usage statistics"
+          },
+          "content": {
+            "type": "string",
+            "description": "Generated response content"
+          },
+          "toolCalls": {
+            "type": "json",
+            "description": "Tool calls made"
+          },
+          "providerTiming": {
+            "type": "json",
+            "description": "Provider timing information"
+          }
+        },
+        "enabled": true,
+        "horizontalHandles": true,
+        "height": 160,
+        "advancedMode": true,
+        "errorEnabled": false,
+        "triggerMode": false,
+        "data": {
+          "canonicalModes": {
+            "files": "basic",
+            "vertexCredential": "basic"
+          }
+        },
+        "locked": false
+      },
+      "7a351477-9381-4f8c-9c8b-a9ebb1b2ac31": {
+        "id": "7a351477-9381-4f8c-9c8b-a9ebb1b2ac31",
+        "type": "exa",
+        "name": "webSearch",
+        "position": {
+          "x": 1870,
+          "y": 180
+        },
+        "subBlocks": {
+          "ids": {
+            "id": "ids",
+            "type": "long-input",
+            "value": null
+          },
+          "url": {
+            "id": "url",
+            "type": "long-input",
+            "value": null
+          },
+          "text": {
+            "id": "text",
+            "type": "switch",
+            "value": false
+          },
+          "type": {
+            "id": "type",
+            "type": "dropdown",
+            "value": "fast"
+          },
+          "urls": {
+            "id": "urls",
+            "type": "long-input",
+            "value": null
+          },
+          "model": {
+            "id": "model",
+            "type": "dropdown",
+            "value": null
+          },
+          "query": {
+            "id": "query",
+            "type": "long-input",
+            "value": "best <parseRequest.restaurant_type> restaurants in <parseRequest.location> address phone hours"
+          },
+          "apiKey": {
+            "id": "apiKey",
+            "type": "short-input",
+            "value": null
+          },
+          "effort": {
+            "id": "effort",
+            "type": "dropdown",
+            "value": null
+          },
+          "summary": {
+            "id": "summary",
+            "type": "switch",
+            "value": true
+          },
+          "category": {
+            "id": "category",
+            "type": "dropdown",
+            "value": null
+          },
+          "subpages": {
+            "id": "subpages",
+            "type": "short-input",
+            "value": null
+          },
+          "operation": {
+            "id": "operation",
+            "type": "dropdown",
+            "value": "exa_search"
+          },
+          "highlights": {
+            "id": "highlights",
+            "type": "switch",
+            "value": false
+          },
+          "numResults": {
+            "id": "numResults",
+            "type": "short-input",
+            "value": 8
+          },
+          "extrasLinks": {
+            "id": "extrasLinks",
+            "type": "short-input",
+            "value": null
+          },
+          "maxAgeHours": {
+            "id": "maxAgeHours",
+            "type": "short-input",
+            "value": null
+          },
+          "endCrawlDate": {
+            "id": "endCrawlDate",
+            "type": "short-input",
+            "value": null
+          },
+          "outputSchema": {
+            "id": "outputSchema",
+            "type": "code",
+            "value": null
+          },
+          "summaryQuery": {
+            "id": "summaryQuery",
+            "type": "long-input",
+            "value": "Restaurant name, full street address, phone number, hours of operation. State if permanently closed. Omit menu, reviews and history."
+          },
+          "systemPrompt": {
+            "id": "systemPrompt",
+            "type": "long-input",
+            "value": null
+          },
+          "userLocation": {
+            "id": "userLocation",
+            "type": "short-input",
+            "value": null
+          },
+          "previousRunId": {
+            "id": "previousRunId",
+            "type": "short-input",
+            "value": null
+          },
+          "subpageTarget": {
+            "id": "subpageTarget",
+            "type": "long-input",
+            "value": null
+          },
+          "excludeDomains": {
+            "id": "excludeDomains",
+            "type": "long-input",
+            "value": null
+          },
+          "includeDomains": {
+            "id": "includeDomains",
+            "type": "long-input",
+            "value": null
+          },
+          "startCrawlDate": {
+            "id": "startCrawlDate",
+            "type": "short-input",
+            "value": null
+          },
+          "endPublishedDate": {
+            "id": "endPublishedDate",
+            "type": "short-input",
+            "value": null
+          },
+          "extrasImageLinks": {
+            "id": "extrasImageLinks",
+            "type": "short-input",
+            "value": null
+          },
+          "livecrawlTimeout": {
+            "id": "livecrawlTimeout",
+            "type": "short-input",
+            "value": 10000
+          },
+          "startPublishedDate": {
+            "id": "startPublishedDate",
+            "type": "short-input",
+            "value": null
+          },
+          "excludeSourceDomain": {
+            "id": "excludeSourceDomain",
+            "type": "switch",
+            "value": null
+          }
+        },
+        "outputs": {
+          "results": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Result identifier, usable as an id on the Get Contents operation"
+                },
+                "url": {
+                  "type": "string",
+                  "description": "The URL of the search result"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "Text snippet or full content from the page"
+                },
+                "image": {
+                  "type": "string",
+                  "description": "URL of a representative image from the page"
+                },
+                "score": {
+                  "type": "number",
+                  "optional": true,
+                  "description": "Relevance score. Only returned by the legacy neural search type"
+                },
+                "title": {
+                  "type": "string",
+                  "description": "The title of the search result"
+                },
+                "author": {
+                  "type": "string",
+                  "description": "The author of the content"
+                },
+                "extras": {
+                  "type": "json",
+                  "description": "Extracted links and image links when requested"
+                },
+                "favicon": {
+                  "type": "string",
+                  "description": "URL of the site's favicon"
+                },
+                "summary": {
+                  "type": "string",
+                  "description": "A brief summary of the content"
+                },
+                "entities": {
+                  "type": "json",
+                  "description": "Structured entity data for company, people, and publication results"
+                },
+                "subpages": {
+                  "type": "json",
+                  "description": "Crawled subpages of the result"
+                },
+                "highlights": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Relevant snippets extracted from the page"
+                },
+                "publishedDate": {
+                  "type": "string",
+                  "description": "Date when the content was published"
+                },
+                "highlightScores": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "description": "Similarity score for each highlight"
+                }
+              }
+            },
+            "description": "Search results with titles, URLs, and text snippets"
+          },
+          "grounding": {
+            "type": "json",
+            "optional": true,
+            "description": "Field-level citations backing the synthesized output"
+          },
+          "requestId": {
+            "type": "string",
+            "description": "Exa request identifier, useful for support"
+          },
+          "structuredOutput": {
+            "type": "json",
+            "optional": true,
+            "description": "Synthesized answer matching outputSchema, when one was supplied"
+          }
+        },
+        "enabled": true,
+        "horizontalHandles": true,
+        "height": 48,
+        "advancedMode": false,
+        "errorEnabled": false,
+        "triggerMode": false,
+        "data": {},
+        "locked": false
+      },
+      "fe120925-d8d2-416a-b09e-0572b6e220b2": {
+        "id": "fe120925-d8d2-416a-b09e-0572b6e220b2",
+        "type": "function",
+        "name": "clockStart",
+        "position": {
+          "x": 580,
+          "y": 176
+        },
+        "subBlocks": {
+          "code": {
+            "id": "code",
+            "type": "code",
+            "value": "// Stamps the moment the run starts so blockInventory can time parseRequest and the whole run.\nreturn { t: Date.now() };"
+          },
+          "language": {
+            "id": "language",
+            "type": "dropdown",
+            "value": "javascript"
+          },
+          "sandboxId": {
+            "id": "sandboxId",
+            "type": "combobox",
+            "value": null
+          },
+          "secretScope": {
+            "id": "secretScope",
+            "type": "dropdown",
+            "value": "all"
+          },
+          "mountedSecrets": {
+            "id": "mountedSecrets",
+            "type": "dropdown",
+            "value": null
+          }
+        },
+        "outputs": {
+          "files": {
+            "type": "file[]",
+            "description": "Files the code wrote to /tmp/sim/outputs, ready to attach or upload downstream"
+          },
+          "result": {
+            "type": "json",
+            "description": "Structured result emitted by the executed code"
+          },
+          "stdout": {
+            "type": "string",
+            "description": "Console log output and debug messages from function execution"
+          }
+        },
+        "enabled": true,
+        "horizontalHandles": true,
+        "height": 0,
+        "advancedMode": false,
+        "errorEnabled": false,
+        "triggerMode": false,
+        "data": {},
+        "locked": false
+      },
+      "2c9d0007-8c55-4df8-8c0b-fdd75ab3aa8f": {
+        "id": "2c9d0007-8c55-4df8-8c0b-fdd75ab3aa8f",
+        "type": "function",
+        "name": "exaDone",
+        "position": {
+          "x": 2300,
+          "y": 176
+        },
+        "subBlocks": {
+          "code": {
+            "id": "code",
+            "type": "code",
+            "value": "// Timestamp after the Exa search, so blockInventory can time webSearch and restaurantFinder.\nreturn { t: Date.now() };"
+          },
+          "language": {
+            "id": "language",
+            "type": "dropdown",
+            "value": "javascript"
+          },
+          "sandboxId": {
+            "id": "sandboxId",
+            "type": "combobox",
+            "value": null
+          },
+          "secretScope": {
+            "id": "secretScope",
+            "type": "dropdown",
+            "value": "all"
+          },
+          "mountedSecrets": {
+            "id": "mountedSecrets",
+            "type": "dropdown",
+            "value": null
+          }
+        },
+        "outputs": {
+          "files": {
+            "type": "file[]",
+            "description": "Files the code wrote to /tmp/sim/outputs, ready to attach or upload downstream"
+          },
+          "result": {
+            "type": "json",
+            "description": "Structured result emitted by the executed code"
+          },
+          "stdout": {
+            "type": "string",
+            "description": "Console log output and debug messages from function execution"
+          }
+        },
+        "enabled": true,
+        "horizontalHandles": true,
+        "height": 0,
+        "advancedMode": false,
+        "errorEnabled": false,
+        "triggerMode": false,
+        "data": {},
+        "locked": false
+      },
+      "19fb5ce9-d400-467d-b639-c9958ff15fb6": {
+        "id": "19fb5ce9-d400-467d-b639-c9958ff15fb6",
+        "type": "function",
+        "name": "finderDone",
+        "position": {
+          "x": 3160,
+          "y": 176
+        },
+        "subBlocks": {
+          "code": {
+            "id": "code",
+            "type": "code",
+            "value": "// Timestamp after restaurantFinder, so blockInventory can time it.\nreturn { t: Date.now() };"
+          },
+          "language": {
+            "id": "language",
+            "type": "dropdown",
+            "value": "javascript"
+          },
+          "sandboxId": {
+            "id": "sandboxId",
+            "type": "combobox",
+            "value": null
+          },
+          "secretScope": {
+            "id": "secretScope",
+            "type": "dropdown",
+            "value": "all"
+          },
+          "mountedSecrets": {
+            "id": "mountedSecrets",
+            "type": "dropdown",
+            "value": null
+          }
+        },
+        "outputs": {
+          "files": {
+            "type": "file[]",
+            "description": "Files the code wrote to /tmp/sim/outputs, ready to attach or upload downstream"
+          },
+          "result": {
+            "type": "json",
+            "description": "Structured result emitted by the executed code"
+          },
+          "stdout": {
+            "type": "string",
+            "description": "Console log output and debug messages from function execution"
+          }
+        },
+        "enabled": true,
+        "horizontalHandles": true,
+        "height": 0,
+        "advancedMode": false,
+        "errorEnabled": false,
+        "triggerMode": false,
+        "data": {},
+        "locked": false
+      },
+      "fc1f9260-e8d7-48c8-b0e1-3c053400a37c": {
+        "id": "fc1f9260-e8d7-48c8-b0e1-3c053400a37c",
+        "type": "function",
+        "name": "blockInventory",
+        "position": {
+          "x": 4880,
+          "y": 576
+        },
+        "subBlocks": {
+          "code": {
+            "id": "code",
+            "type": "code",
+            "value": "// Last chat message: which Agent and Exa blocks this workflow uses, the model or\n// search settings of each, and the time each took in this run.\n// Block list is fixed text: update it if Agent or Exa blocks are added, removed or change model.\n// The structured-output Agents and the Exa block expose no timing field, so each time is\n// measured between the timestamp Function blocks on either side of it (~ prefix; includes\n// a few tens of ms of block overhead).\nconst fmt = ms => (typeof ms !== 'number' || !Number.isFinite(ms) || ms < 0) ? 'did not run'\n  : ms < 1000 ? Math.round(ms) + ' ms' : (ms / 1000).toFixed(1) + ' s';\nconst ts = x => (x && x.t != null) ? (typeof x.t === 'number' ? x.t : Date.parse(x.t)) : NaN;\nconst gap = (a, b) => { const d = ts(b) - ts(a); return Number.isFinite(d) ? d : null; };\nconst approx = ms => ms === null ? 'did not run' : '~' + fmt(ms);\n\nconst t0 = <clockstart.result>;\nconst tParsed = <markstart.result>;\nconst tSearched = <exadone.result>;\nconst tFound = <finderdone.result>;\nconst totalMs = gap(t0, { t: Date.now() });\n\nconst exaResults = <websearch.results>;\nconst exaCount = Array.isArray(exaResults) ? exaResults.length : 0;\nconst found = <restaurantfinder.restaurants>;\nconst foundCount = Array.isArray(found) ? found.length : 0;\nconst type = String(<parserequest.restaurant_type> || '').trim();\nconst loc = String(<parserequest.location> || '').trim();\n\nreturn [\n  '---',\n  'About this workflow (time each block took in this run):',\n  '- Exa blocks (1):',\n  '  - webSearch (exa_search, type: fast, up to 8 results, page summaries): ' + approx(gap(tParsed, tSearched)) +\n    ' (' + exaCount + ' result' + (exaCount === 1 ? '' : 's') + ' returned)',\n  '- Agent blocks (2):',\n  '  - parseRequest (gemini-3.5-flash-lite): ' + approx(gap(t0, tParsed)) +\n    (type || loc ? ' (understood: ' + (type || '?') + ' near ' + (loc || '?') + ')' : ''),\n  '  - restaurantFinder (gemini-3.5-flash-lite): ' + approx(gap(tSearched, tFound)) +\n    ' (' + foundCount + ' restaurant' + (foundCount === 1 ? '' : 's') + ' returned)',\n  'Total time to execute: ' + (totalMs === null ? 'not available'\n    : totalMs < 60000 ? (totalMs / 1000).toFixed(1) + ' seconds'\n    : Math.floor(totalMs / 60000) + ' min ' + Math.round((totalMs % 60000) / 1000) + ' s')\n].join('\\n');"
+          },
+          "language": {
+            "id": "language",
+            "type": "dropdown",
+            "value": "javascript"
+          },
+          "sandboxId": {
+            "id": "sandboxId",
+            "type": "combobox",
+            "value": null
+          },
+          "secretScope": {
+            "id": "secretScope",
+            "type": "dropdown",
+            "value": "all"
+          },
+          "mountedSecrets": {
+            "id": "mountedSecrets",
+            "type": "dropdown",
+            "value": null
+          }
+        },
+        "outputs": {
+          "files": {
+            "type": "file[]",
+            "description": "Files the code wrote to /tmp/sim/outputs, ready to attach or upload downstream"
+          },
+          "result": {
+            "type": "json",
+            "description": "Structured result emitted by the executed code"
+          },
+          "stdout": {
+            "type": "string",
+            "description": "Console log output and debug messages from function execution"
+          }
+        },
+        "enabled": true,
+        "horizontalHandles": true,
+        "height": 0,
+        "advancedMode": false,
+        "errorEnabled": false,
+        "triggerMode": false,
+        "data": {},
+        "locked": false
+      },
+      "b2e2f0c0-ecea-4364-8ba6-d91d3cb7bccd": {
+        "id": "b2e2f0c0-ecea-4364-8ba6-d91d3cb7bccd",
+        "type": "function",
+        "name": "buildRows",
+        "position": {
+          "x": 3590,
+          "y": 400
+        },
+        "subBlocks": {
+          "code": {
+            "id": "code",
+            "type": "code",
+            "value": "const list = <restaurantFinder.restaurants> || [];\nconst runDate = new Date().toISOString().slice(0, 10);\nconst source = String(<start.metadata.executionType> || 'manual').toLowerCase();\n\n// The model sometimes echoes a source's own wording for a gap (\"Not provided on\n// the page\", \"not specified\") instead of the exact \"Not listed\" the prompt asks\n// for. Normalize deterministically here so the table has one consistent value.\nfunction clean(v) {\n  const s = (v === undefined || v === null) ? '' : String(v).trim();\n  if (!s) return 'Not listed';\n  if (/^not\\s+(listed|provided|specified|available|given|found)\\b/i.test(s)) return 'Not listed';\n  if (/^(n\\/a|none|unknown|unavailable)$/i.test(s)) return 'Not listed';\n  return s;\n}\n\nconst seen = new Set();\nconst rows = [];\nfor (const r of list) {\n  const name = (r && r.restaurant_name ? String(r.restaurant_name) : '').trim();\n  if (!name) continue;\n  const key = name.toLowerCase();\n  if (seen.has(key)) continue;\n  seen.add(key);\n  rows.push({\n    run_date: runDate,\n    restaurant_type: <parseRequest.restaurant_type>,\n    location: <parseRequest.location>,\n    restaurant_name: name,\n    address: clean(r.address),\n    phone: clean(r.phone),\n    hours: clean(r.hours),\n    source: source\n  });\n  if (rows.length >= 5) break;\n}\nreturn rows;"
+          },
+          "language": {
+            "id": "language",
+            "type": "dropdown",
+            "value": "javascript"
+          }
+        },
+        "outputs": {
+          "result": {
+            "type": "json",
+            "description": "Return value from the executed JavaScript function"
+          },
+          "stdout": {
+            "type": "string",
+            "description": "Console log output and debug messages from function execution"
+          }
+        },
+        "enabled": true,
+        "horizontalHandles": true,
+        "height": 112,
+        "advancedMode": false,
+        "errorEnabled": false,
+        "triggerMode": false,
+        "data": {},
+        "locked": false
+      },
+      "b6c2e3b5-2a5c-4ef0-9182-cf509874bb1e": {
+        "id": "b6c2e3b5-2a5c-4ef0-9182-cf509874bb1e",
+        "type": "table",
+        "name": "appendToTable",
+        "position": {
+          "x": 4450,
+          "y": 480
+        },
+        "subBlocks": {
+          "data": {
+            "id": "data",
+            "type": "code",
+            "value": null
+          },
+          "rows": {
+            "id": "rows",
+            "type": "code",
+            "value": "<buildRows.result>"
+          },
+          "sort": {
+            "id": "sort",
+            "type": "code",
+            "value": null
+          },
+          "limit": {
+            "id": "limit",
+            "type": "short-input",
+            "value": null
+          },
+          "rowId": {
+            "id": "rowId",
+            "type": "short-input",
+            "value": null
+          },
+          "filter": {
+            "id": "filter",
+            "type": "code",
+            "value": null
+          },
+          "offset": {
+            "id": "offset",
+            "type": "short-input",
+            "value": null
+          },
+          "eventType": {
+            "id": "eventType",
+            "type": "dropdown",
+            "value": null
+          },
+          "operation": {
+            "id": "operation",
+            "type": "dropdown",
+            "value": "batch_insert_rows"
+          },
+          "builderMode": {
+            "id": "builderMode",
+            "type": "dropdown",
+            "value": null
+          },
+          "sortBuilder": {
+            "id": "sortBuilder",
+            "type": "sort-builder",
+            "value": null
+          },
+          "watchColumns": {
+            "id": "watchColumns",
+            "type": "dropdown",
+            "value": null
+          },
+          "filterBuilder": {
+            "id": "filterBuilder",
+            "type": "filter-builder",
+            "value": null
+          },
+          "manualTableId": {
+            "id": "manualTableId",
+            "type": "short-input",
+            "value": null
+          },
+          "tableSelector": {
+            "id": "tableSelector",
+            "type": "table-selector",
+            "value": null
+          },
+          "bulkFilterMode": {
+            "id": "bulkFilterMode",
+            "type": "dropdown",
+            "value": null
+          },
+          "includeHeaders": {
+            "id": "includeHeaders",
+            "type": "switch",
+            "value": null
+          },
+          "bulkFilterBuilder": {
+            "id": "bulkFilterBuilder",
+            "type": "filter-builder",
+            "value": null
+          },
+          "triggerInstructions": {
+            "id": "triggerInstructions",
+            "type": "text",
+            "value": null
+          },
+          "manualConflictColumn": {
+            "id": "manualConflictColumn",
+            "type": "short-input",
+            "value": null
+          },
+          "conflictColumnSelector": {
+            "id": "conflictColumnSelector",
+            "type": "column-selector",
+            "value": null
+          }
+        },
+        "outputs": {
+          "rows": {
+            "type": "array",
+            "description": "Inserted rows data"
+          },
+          "message": {
+            "type": "string",
+            "description": "Status message"
+          },
+          "success": {
+            "type": "boolean",
+            "description": "Whether rows were inserted"
+          },
+          "insertedCount": {
+            "type": "number",
+            "description": "Number of rows inserted"
+          }
+        },
+        "enabled": true,
+        "horizontalHandles": true,
+        "height": 136,
+        "advancedMode": false,
+        "errorEnabled": false,
+        "triggerMode": false,
+        "data": {
+          "canonicalModes": {
+            "tableId": "advanced",
+            "conflictColumn": "basic"
+          }
+        },
+        "locked": false
+      },
+      "bceabf83-f57d-46f0-9a2e-fa4666c2a347": {
+        "id": "bceabf83-f57d-46f0-9a2e-fa4666c2a347",
+        "type": "function",
+        "name": "noRows",
+        "position": {
+          "x": 4450,
+          "y": 696
+        },
+        "subBlocks": {
+          "code": {
+            "id": "code",
+            "type": "code",
+            "value": "return { inserted: 0, message: 'No restaurants found for ' + <parseRequest.restaurant_type> + ' in ' + <parseRequest.location> + ' — nothing appended to the table.' };"
+          },
+          "language": {
+            "id": "language",
+            "type": "dropdown",
+            "value": "javascript"
+          },
+          "sandboxId": {
+            "id": "sandboxId",
+            "type": "combobox",
+            "value": null
+          },
+          "secretScope": {
+            "id": "secretScope",
+            "type": "dropdown",
+            "value": null
+          },
+          "mountedSecrets": {
+            "id": "mountedSecrets",
+            "type": "dropdown",
+            "value": null
+          }
+        },
+        "outputs": {
+          "result": {
+            "type": "json",
+            "description": "Return value from the executed JavaScript function"
+          },
+          "stdout": {
+            "type": "string",
+            "description": "Console log output and debug messages from function execution"
+          }
+        },
+        "enabled": true,
+        "horizontalHandles": true,
+        "height": 112,
+        "advancedMode": false,
+        "errorEnabled": false,
+        "triggerMode": false,
+        "data": {},
+        "locked": false
+      },
+      "a2dea27d-2675-4c88-931f-014972d54577": {
+        "id": "a2dea27d-2675-4c88-931f-014972d54577",
+        "type": "function",
+        "name": "buildTelemetry",
+        "position": {
+          "x": 3590,
+          "y": 180
+        },
+        "subBlocks": {
+          "code": {
+            "id": "code",
+            "type": "code",
+            "value": "// LangSmith trace for this run.\n//\n// IMPORTANT: restaurantFinder uses a responseFormat, which REPLACES the agent's\n// default outputs with the schema's top-level fields. The only readable fields are\n// restaurants and summary — providerTiming, model, tokens, cost and toolCalls do\n// NOT exist on this block and referencing any of them fails the run at resolve\n// time (this is what broke the live chat). The agent also has no tools any more,\n// so there are no tool calls to report.\n//\n// Timing comes from markStart (stamped just before the search) and the clock here,\n// which brackets search + format. Nothing below is invented.\nconst startIso = (<markstart.result> || {}).t || new Date().toISOString();\nconst startMs  = new Date(startIso).getTime();\nconst endMs    = Date.now();\n\nconst list    = <restaurantfinder.restaurants> || [];\nconst summary = <restaurantfinder.summary> || '';\n\n// no crypto.randomUUID in this sandbox\nfunction uuid() {\n  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {\n    const r = Math.random() * 16 | 0;\n    return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);\n  });\n}\nfunction pad(n, w) { return String(n).padStart(w, '0'); }\n// dotted_order format, confirmed against this account's own runs:\n//   YYYYMMDDTHHMMSSffffffZ<uuid>\nfunction seg(ms, id) {\n  const d = new Date(ms);\n  return d.getUTCFullYear() + pad(d.getUTCMonth() + 1, 2) + pad(d.getUTCDate(), 2) + 'T'\n       + pad(d.getUTCHours(), 2) + pad(d.getUTCMinutes(), 2) + pad(d.getUTCSeconds(), 2)\n       + pad(d.getUTCMilliseconds(), 3) + '000Z' + id;\n}\nconst iso = function (ms) { return new Date(ms).toISOString(); };\n\nconst rootId  = uuid();\nconst rootDot = seg(startMs, rootId);\n\nconst post = [{\n  id: rootId, trace_id: rootId, dotted_order: rootDot,\n  name: 'find-a-restaurant', run_type: 'chain',\n  start_time: iso(startMs), end_time: iso(endMs),\n  inputs:  { restaurant_type: <parseRequest.restaurant_type>, location: <parseRequest.location>, chat_message: <start.input> },\n  outputs: { count: list.length, restaurants: list, summary: summary },\n  tags: ['find-a-restaurant', 'sim', 'agent'],\n  extra: { metadata: {\n    sim_workflow_id: '86b5037b-5508-49d7-a98c-df10b57cd6ae',\n    execution_id: <start.metadata.executionId>,\n    execution_type: <start.metadata.executionType>,\n    duration_ms: endMs - startMs\n  } }\n}];\n\nreturn { post: post, spans: post.length, root: rootId };"
+          },
+          "language": {
+            "id": "language",
+            "type": "dropdown",
+            "value": "javascript"
+          }
+        },
+        "outputs": {
+          "result": {
+            "type": "json"
+          },
+          "stdout": {
+            "type": "string"
+          }
+        },
+        "enabled": true,
+        "horizontalHandles": true,
+        "height": 140,
+        "advancedMode": false,
+        "errorEnabled": false,
+        "triggerMode": false,
+        "data": {},
+        "locked": false
+      },
+      "8ac3d851-27e7-4b44-8e98-fd19d5c30d2e": {
+        "id": "8ac3d851-27e7-4b44-8e98-fd19d5c30d2e",
+        "type": "function",
+        "name": "telemetryDone",
+        "position": {
+          "x": 3150,
+          "y": 368
+        },
+        "subBlocks": {
+          "code": {
+            "id": "code",
+            "type": "code",
+            "value": "// Terminator for the telemetry branch. errorEnabled only creates an error HANDLE;\n// if that handle has no outgoing edge the error still fails the whole execution.\n// Wiring both handles here contains a LangSmith outage so the main path survives.\nreturn { telemetry: 'attempted' };"
+          },
+          "language": {
+            "id": "language",
+            "type": "dropdown",
+            "value": "javascript"
+          }
+        },
+        "outputs": {
+          "result": {
+            "type": "json"
+          },
+          "stdout": {
+            "type": "string"
+          }
+        },
+        "enabled": true,
+        "horizontalHandles": true,
+        "height": 110,
+        "advancedMode": false,
+        "errorEnabled": false,
+        "triggerMode": false,
+        "data": {},
+        "locked": false
+      },
+      "404e800c-b9d5-4027-8032-dea1e48ff1e9": {
+        "id": "404e800c-b9d5-4027-8032-dea1e48ff1e9",
+        "type": "function",
+        "name": "markStart",
+        "position": {
+          "x": 1440,
+          "y": 180
+        },
+        "subBlocks": {
+          "code": {
+            "id": "code",
+            "type": "code",
+            "value": "// Timestamp before the agent runs. LangSmith treats a run without an end_time as\n// still in progress, and without a start_time it cannot compute latency.\nreturn { t: new Date().toISOString() };"
+          },
+          "language": {
+            "id": "language",
+            "type": "dropdown",
+            "value": "javascript"
+          }
+        },
+        "outputs": {
+          "result": {
+            "type": "json"
+          },
+          "stdout": {
+            "type": "string"
+          }
+        },
+        "enabled": true,
+        "horizontalHandles": true,
+        "height": 110,
+        "advancedMode": false,
+        "errorEnabled": false,
+        "triggerMode": false,
+        "data": {},
+        "locked": false
+      },
+      "59cb69d7-012e-4cb1-8c84-e8f635b12fdc": {
+        "id": "59cb69d7-012e-4cb1-8c84-e8f635b12fdc",
+        "type": "start_trigger",
+        "name": "Start",
+        "position": {
+          "x": 150,
+          "y": 180
+        },
+        "subBlocks": {
+          "inputFormat": {
+            "id": "inputFormat",
+            "type": "input-format",
+            "value": [
+              {
+                "id": "f053bff5-5672-4ea0-b655-aad57a1289ab",
+                "name": "RestaurantType",
+                "type": "string",
+                "value": "24 hour diner",
+                "collapsed": false,
+                "description": "Required. Cuisine or restaurant category, e.g. 'barbecue', 'sushi', 'Italian'."
+              },
+              {
+                "id": "e4fb63b9-ad50-44db-abdf-5153572c1198",
+                "name": "location",
+                "type": "string",
+                "value": "birmingham ALA",
+                "collapsed": false,
+                "description": " Required. City, neighborhood, or address to search near, e.g. 'Fairfax, VA'"
+              }
+            ]
+          },
+          "runMetadata": {
+            "id": "runMetadata",
+            "type": "switch",
+            "value": true
+          }
+        },
+        "outputs": {
+          "files": {
+            "type": "file[]",
+            "description": "User uploaded files"
+          },
+          "input": {
+            "type": "string",
+            "description": "Primary user input or message"
+          },
+          "conversationId": {
+            "type": "string",
+            "description": "Conversation thread identifier"
+          }
+        },
+        "enabled": true,
+        "horizontalHandles": true,
+        "height": 104,
+        "advancedMode": true,
+        "errorEnabled": false,
+        "triggerMode": false,
+        "data": {},
+        "locked": false
+      }
+    },
+    "edges": [
+      {
+        "id": "168fbf21-ce66-49c6-af1b-8a4cbe9d0d56",
+        "source": "6172b6d6-617a-4951-b863-7da54f3bd878",
+        "target": "19fb5ce9-d400-467d-b639-c9958ff15fb6",
+        "sourceHandle": "source",
+        "targetHandle": "target",
+        "type": "default",
+        "data": {}
+      },
+      {
+        "id": "52750195-7893-40f5-add5-7b1fe52f62b5",
+        "source": "7a351477-9381-4f8c-9c8b-a9ebb1b2ac31",
+        "target": "2c9d0007-8c55-4df8-8c0b-fdd75ab3aa8f",
+        "sourceHandle": "source",
+        "targetHandle": "target",
+        "type": "default",
+        "data": {}
+      },
+      {
+        "id": "02bc95cd-bae0-48c9-9469-3ec7240e871b",
+        "source": "f20938cb-1e5d-446d-801d-302ae4564289",
+        "target": "404e800c-b9d5-4027-8032-dea1e48ff1e9",
+        "sourceHandle": "source",
+        "targetHandle": "target",
+        "type": "default",
+        "data": {}
+      },
+      {
+        "id": "ee31aa39-e73e-446c-8e82-5036147d7962",
+        "source": "2c9d0007-8c55-4df8-8c0b-fdd75ab3aa8f",
+        "target": "6172b6d6-617a-4951-b863-7da54f3bd878",
+        "sourceHandle": "source",
+        "targetHandle": "target",
+        "type": "default",
+        "data": {}
+      },
+      {
+        "id": "1aedd305-4e63-4334-b4f4-a96f604ff258",
+        "source": "404e800c-b9d5-4027-8032-dea1e48ff1e9",
+        "target": "7a351477-9381-4f8c-9c8b-a9ebb1b2ac31",
+        "sourceHandle": "source",
+        "targetHandle": "target",
+        "type": "default",
+        "data": {}
+      },
+      {
+        "id": "2c942b78-1ffe-44c5-9353-1a76afe690bf",
+        "source": "b2e2f0c0-ecea-4364-8ba6-d91d3cb7bccd",
+        "target": "7f07d685-1eec-4430-8a39-a9887b61909e",
+        "sourceHandle": "source",
+        "targetHandle": "target",
+        "type": "default",
+        "data": {}
+      },
+      {
+        "id": "21ba10c1-0b7f-4076-baba-92fa588173d4",
+        "source": "19fb5ce9-d400-467d-b639-c9958ff15fb6",
+        "target": "a2dea27d-2675-4c88-931f-014972d54577",
+        "sourceHandle": "source",
+        "targetHandle": "target",
+        "type": "default",
+        "data": {}
+      },
+      {
+        "id": "d333fd70-95ef-4601-a2bd-1ecc7557ac30",
+        "source": "19fb5ce9-d400-467d-b639-c9958ff15fb6",
+        "target": "b2e2f0c0-ecea-4364-8ba6-d91d3cb7bccd",
+        "sourceHandle": "source",
+        "targetHandle": "target",
+        "type": "default",
+        "data": {}
+      },
+      {
+        "id": "1b46cf4a-e2c6-4649-97d7-b1f10409c292",
+        "source": "7f07d685-1eec-4430-8a39-a9887b61909e",
+        "target": "b6c2e3b5-2a5c-4ef0-9182-cf509874bb1e",
+        "sourceHandle": "condition-7f07d685-1eec-4430-8a39-a9887b61909e-if",
+        "targetHandle": "target",
+        "type": "default",
+        "data": {}
+      },
+      {
+        "id": "3c340caa-2507-407a-be85-905cff100c1f",
+        "source": "7f07d685-1eec-4430-8a39-a9887b61909e",
+        "target": "bceabf83-f57d-46f0-9a2e-fa4666c2a347",
+        "sourceHandle": "condition-7f07d685-1eec-4430-8a39-a9887b61909e-else",
+        "targetHandle": "target",
+        "type": "default",
+        "data": {}
+      },
+      {
+        "id": "715c5d5a-ca3d-41f3-aad3-8d5a1a3f450c",
+        "source": "fe120925-d8d2-416a-b09e-0572b6e220b2",
+        "target": "f20938cb-1e5d-446d-801d-302ae4564289",
+        "sourceHandle": "source",
+        "targetHandle": "target",
+        "type": "default",
+        "data": {}
+      },
+      {
+        "id": "68f2bc5e-7d34-42de-8ac8-5e27683bf62d",
+        "source": "b6c2e3b5-2a5c-4ef0-9182-cf509874bb1e",
+        "target": "fc1f9260-e8d7-48c8-b0e1-3c053400a37c",
+        "sourceHandle": "source",
+        "targetHandle": "target",
+        "type": "default",
+        "data": {}
+      },
+      {
+        "id": "2b1631bf-7127-44f0-80af-18fe3dbcfa7b",
+        "source": "bceabf83-f57d-46f0-9a2e-fa4666c2a347",
+        "target": "fc1f9260-e8d7-48c8-b0e1-3c053400a37c",
+        "sourceHandle": "source",
+        "targetHandle": "target",
+        "type": "default",
+        "data": {}
+      },
+      {
+        "id": "d55b2988-3583-4b78-9a09-ce66c23a0778",
+        "source": "59cb69d7-012e-4cb1-8c84-e8f635b12fdc",
+        "target": "fe120925-d8d2-416a-b09e-0572b6e220b2",
+        "sourceHandle": "source",
+        "targetHandle": "target",
+        "type": "default",
+        "data": {}
+      }
+    ],
+    "loops": {},
+    "parallels": {},
+    "variables": {
+      "645c9282-1ff0-472b-b258-df6d2e2c39c3": {
+        "id": "645c9282-1ff0-472b-b258-df6d2e2c39c3",
+        "name": "variable1",
+        "type": "plain",
+        "value": ""
+      }
+    },
+    "metadata": {
+      "name": "find a restaurant",
+      "exportedAt": "2026-11-11T18:17:23.623Z"
+    }
+  }
+}
