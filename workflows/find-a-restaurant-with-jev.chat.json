@@ -1,0 +1,85 @@
+{
+  "identifier": "chow",
+  "url": "https://www.sim.ai/chat/chow",
+  "title": "Find a Restaurant with Jev",
+  "description": "",
+  "isActive": true,
+  "authType": "public",
+  "allowedEmails": [],
+  "customizations": {
+    "primaryColor": "var(--brand-hover)",
+    "welcomeMessage": "Hi there! How can I help you today?"
+  },
+  "outputConfigs": [
+    {
+      "blockId": "4454e044-09fe-4802-907f-d187f969e14d",
+      "path": "result"
+    },
+    {
+      "blockId": "5b591033-f987-412f-a1f6-6b5e70d7088a",
+      "path": "result"
+    },
+    {
+      "blockId": "ac4506c5-090d-46b9-9cdb-24df3a7ed27a",
+      "path": "restaurants"
+    },
+    {
+      "blockId": "ac4506c5-090d-46b9-9cdb-24df3a7ed27a",
+      "path": "summary"
+    },
+    {
+      "blockId": "7994792d-2d30-46c1-b4a6-b48aa6df8568",
+      "path": "result"
+    },
+    {
+      "blockId": "04522e51-f2c2-41d7-8e3d-9c844c4c0651",
+      "path": "result"
+    }
+  ],
+  "includeThinking": false,
+  "includeToolCalls": false,
+  "displayedMessages": [
+    {
+      "order": 1,
+      "block": "pleaseWait",
+      "blockId": "4454e044-09fe-4802-907f-d187f969e14d",
+      "path": "result",
+      "shows": "Please wait message with the user's prompt"
+    },
+    {
+      "order": 2,
+      "block": "searchPlan",
+      "blockId": "5b591033-f987-412f-a1f6-6b5e70d7088a",
+      "path": "result",
+      "shows": "Jev search plan: complexity tier and confidence, Exa search mode, number of results, approved areas and extra search terms"
+    },
+    {
+      "order": 3,
+      "block": "restaurantFinder",
+      "blockId": "ac4506c5-090d-46b9-9cdb-24df3a7ed27a",
+      "path": "restaurants",
+      "shows": "Raw restaurant list (JSON array of name, address, phone, hours)"
+    },
+    {
+      "order": 4,
+      "block": "restaurantFinder",
+      "blockId": "ac4506c5-090d-46b9-9cdb-24df3a7ed27a",
+      "path": "summary",
+      "shows": "Raw one-paragraph summary from restaurantFinder"
+    },
+    {
+      "order": 5,
+      "block": "totalTime",
+      "blockId": "7994792d-2d30-46c1-b4a6-b48aa6df8568",
+      "path": "result",
+      "shows": "The final answer (numbered restaurant list with description, address, phone, hours, or nothing found) followed by the total time to execute"
+    },
+    {
+      "order": 6,
+      "block": "blockInventory",
+      "blockId": "04522e51-f2c2-41d7-8e3d-9c844c4c0651",
+      "path": "result",
+      "shows": "Agent blocks using Jev (with question types), Exa blocks, and Agent blocks not using Jev (with models), each with the time it took in this run or 'did not run'"
+    }
+  ]
+}
