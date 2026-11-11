@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "exportedAt": "2026-11-11T16:53:32.815Z",
+  "exportedAt": "2026-11-11T17:05:25.993Z",
   "workflow": {
     "id": "aa768eed-3851-4c08-b63e-db967baaad76",
     "name": "find a restaurant-with-jev-v2",
@@ -770,7 +770,7 @@
           "code": {
             "id": "code",
             "type": "code",
-            "value": "// First line shown on the chat page while the Jev search runs.\nconst msg = String(<start.input> || '').trim() ||\n  [String(<start.RestaurantType> || '').trim(), String(<start.location> || '').trim()].filter(Boolean).join(' in ');\nreturn 'Please wait. Search for ' + msg;"
+            "value": "// First line shown on the chat page while the Jev search runs.\nconst msg = String(<start.input> || '').trim() ||\n  [String(<start.RestaurantType> || '').trim(), String(<start.location> || '').trim()].filter(Boolean).join(' in ');\nreturn 'searching for your restaurant: ' + msg + '\\nEstimated wait time: 5 seconds';"
           },
           "language": {
             "id": "language",
@@ -2943,7 +2943,7 @@
           "code": {
             "id": "code",
             "type": "code",
-            "value": "// Final chat line: wall-clock time from the start of the run to the end of the main path.\nconst t0 = Number((<clockstart.result> || {}).t);\nif (!Number.isFinite(t0)) return 'Total time to execute: not available';\nconst s = (Date.now() - t0) / 1000;\nreturn 'Total time to execute: ' + (s < 60 ? s.toFixed(1) + ' seconds' : Math.floor(s / 60) + ' min ' + Math.round(s % 60) + ' s');"
+            "value": "// Final chat message: the restaurants the user asked for, then the total run time.\n// Runs after every path (fresh search, saved results, nothing found).\nconst t0 = Number((<clockstart.result> || {}).t);\nconst s = Number.isFinite(t0) ? (Date.now() - t0) / 1000 : null;\nconst timeLine = 'Total time to execute: ' + (s === null ? 'not available'\n  : s < 60 ? s.toFixed(1) + ' seconds' : Math.floor(s / 60) + ' min ' + Math.round(s % 60) + ' s');\n\nconst type = String(<parserequest.restaurant_type> || '').trim();\nconst loc = String(<parserequest.location> || '').trim();\nconst fin = <finalizelist.result>;   // fresh search (null if it did not run)\nconst cache = <cacherespond.result>; // saved results (null if it did not run)\nconst missing = v => !v || /^not\\s+listed$/i.test(String(v).trim());\n\nlet list = [], summary = '', note = '';\nif (cache && Array.isArray(cache.restaurants)) {\n  list = cache.restaurants;\n  const m = cache.matchedRequest || {};\n  if (m.runDate) note = ' (saved results from ' + m.runDate + ')';\n} else if (fin && Array.isArray(fin.restaurants)) {\n  list = fin.restaurants;\n  summary = String(fin.summary || '');\n}\n\nlet answer;\nif (!list.length) {\n  answer = 'Sorry, I could not find any ' + type + ' restaurants near ' + loc +\n    '. Try a nearby city or a broader type of food.';\n} else {\n  const lines = summary.split(/\\n+/).map(x => x.trim()).filter(Boolean);\n  const used = new Set();\n  const items = list.map((r, i) => {\n    const name = String(r.restaurant_name || 'Unnamed restaurant').trim();\n    const k = lines.findIndex((l, j) => !used.has(j) && l.toLowerCase().includes(name.toLowerCase()));\n    let blurb = '';\n    if (k >= 0) { used.add(k); blurb = lines[k]; }\n    const out = [(i + 1) + '. **' + name + '**' + (blurb ? ' - ' + blurb.replace(name, '').replace(/^[\\s,:-]+/, '') : '')];\n    if (!missing(r.address)) out.push('   - Address: ' + r.address);\n    if (!missing(r.phone)) out.push('   - Phone: ' + r.phone);\n    if (!missing(r.hours)) out.push('   - Hours: ' + r.hours);\n    return out.join('\\n');\n  });\n  const extra = lines.filter((_, j) => !used.has(j));\n  answer = 'Here ' + (list.length === 1 ? 'is 1 ' : 'are ' + list.length + ' ') + type +\n    ' restaurant' + (list.length === 1 ? '' : 's') + ' near ' + loc + note + ':\\n\\n' +\n    items.join('\\n') + (extra.length ? '\\n\\n' + extra.join('\\n') : '');\n}\nreturn answer + '\\n\\n' + timeLine;"
           },
           "language": {
             "id": "language",
@@ -4221,7 +4221,7 @@
     },
     "metadata": {
       "name": "find a restaurant-with-jev-v2",
-      "exportedAt": "2026-11-11T16:53:32.815Z"
+      "exportedAt": "2026-11-11T17:05:25.993Z"
     }
   }
 }

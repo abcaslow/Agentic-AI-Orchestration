@@ -1,0 +1,25 @@
+{
+  "identifier": "findrestaurant",
+  "url": "https://www.sim.ai/chat/findrestaurant",
+  "title": "find a restaurant",
+  "description": "",
+  "isActive": true,
+  "authType": "public",
+  "allowedEmails": [],
+  "customizations": {
+    "primaryColor": "var(--brand-hover)",
+    "welcomeMessage": "Hi there! How can I help you today?"
+  },
+  "outputConfigs": [
+    {
+      "blockId": "6685888a-b800-40fc-bdb8-65b57426d8b9",
+      "path": "result"
+    },
+    {
+      "blockId": "8f0de8d2-b5c4-435c-86a9-1df7e006ff6a",
+      "path": "result"
+    }
+  ],
+  "includeThinking": false,
+  "includeToolCalls": false
+}
