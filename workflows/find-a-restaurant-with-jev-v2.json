@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "exportedAt": "2026-11-11T17:05:25.993Z",
+  "exportedAt": "2026-11-11T17:30:14.813Z",
   "workflow": {
     "id": "aa768eed-3851-4c08-b63e-db967baaad76",
     "name": "find a restaurant-with-jev-v2",
@@ -531,7 +531,7 @@
         "name": "markStart",
         "position": {
           "x": 1020,
-          "y": 180
+          "y": 336
         },
         "subBlocks": {
           "code": {
@@ -3836,6 +3836,64 @@
         "triggerMode": false,
         "data": {},
         "locked": false
+      },
+      "c4a3aab8-d570-4dfc-bce2-2f25fe935103": {
+        "id": "c4a3aab8-d570-4dfc-bce2-2f25fe935103",
+        "type": "function",
+        "name": "blockInventory",
+        "position": {
+          "x": 1010,
+          "y": 144
+        },
+        "subBlocks": {
+          "code": {
+            "id": "code",
+            "type": "code",
+            "value": "// Chat message describing which models and search blocks this workflow uses.\n// Fixed text: update it if Agent or Exa blocks are added, removed or change model.\nconst jev = ['jevRouteScorer', 'jevInstantGuard', 'jevQueryOptimizer', 'jevResultGuard', 'jevFinalCheck', 'jevCacheMatch'];\nconst exa = ['exaInstant', 'webSearch'];\nconst other = [['parseRequest', 'gemini-3.5-flash-lite'], ['restaurantFinder', 'gemini-3.5-flash-lite']];\nreturn [\n  'About this workflow:',\n  '- Agent blocks using the Jev model (' + jev.length + '): ' + jev.join(', '),\n  '- Exa blocks (' + exa.length + '): ' + exa.join(', '),\n  '- Agent blocks not using Jev (' + other.length + '): ' + other.map(([n, m]) => n + ' (' + m + ')').join(', ')\n].join('\\n');"
+          },
+          "language": {
+            "id": "language",
+            "type": "dropdown",
+            "value": "javascript"
+          },
+          "sandboxId": {
+            "id": "sandboxId",
+            "type": "combobox",
+            "value": null
+          },
+          "secretScope": {
+            "id": "secretScope",
+            "type": "dropdown",
+            "value": "all"
+          },
+          "mountedSecrets": {
+            "id": "mountedSecrets",
+            "type": "dropdown",
+            "value": null
+          }
+        },
+        "outputs": {
+          "files": {
+            "type": "file[]",
+            "description": "Files the code wrote to /tmp/sim/outputs, ready to attach or upload downstream"
+          },
+          "result": {
+            "type": "json",
+            "description": "Structured result emitted by the executed code"
+          },
+          "stdout": {
+            "type": "string",
+            "description": "Console log output and debug messages from function execution"
+          }
+        },
+        "enabled": true,
+        "horizontalHandles": true,
+        "height": 0,
+        "advancedMode": false,
+        "errorEnabled": false,
+        "triggerMode": false,
+        "data": {},
+        "locked": false
       }
     },
     "edges": [
@@ -4137,6 +4195,15 @@
         "data": {}
       },
       {
+        "id": "1c020113-f0b8-4615-aa25-95a93cb227c8",
+        "source": "6685888a-b800-40fc-bdb8-65b57426d8b9",
+        "target": "c4a3aab8-d570-4dfc-bce2-2f25fe935103",
+        "sourceHandle": "source",
+        "targetHandle": "target",
+        "type": "default",
+        "data": {}
+      },
+      {
         "id": "0f6b958a-6e46-45fd-b5d1-bc6065f0e684",
         "source": "6a790822-e371-4dc0-b4fe-f1354054bc00",
         "target": "d2f94707-2fc8-4883-b6a2-4f326f6b0882",
@@ -4221,7 +4288,7 @@
     },
     "metadata": {
       "name": "find a restaurant-with-jev-v2",
-      "exportedAt": "2026-11-11T17:05:25.993Z"
+      "exportedAt": "2026-11-11T17:30:14.813Z"
     }
   }
 }

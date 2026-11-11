@@ -16,10 +16,71 @@
       "path": "result"
     },
     {
+      "blockId": "c4a3aab8-d570-4dfc-bce2-2f25fe935103",
+      "path": "result"
+    },
+    {
       "blockId": "8f0de8d2-b5c4-435c-86a9-1df7e006ff6a",
       "path": "result"
     }
   ],
   "includeThinking": false,
-  "includeToolCalls": false
+  "includeToolCalls": false,
+  "displayedMessages": [
+    {
+      "order": 1,
+      "block": "pleaseWait",
+      "blockId": "6685888a-b800-40fc-bdb8-65b57426d8b9",
+      "path": "result",
+      "shows": "Searching message with the user's prompt and the 5-second wait estimate"
+    },
+    {
+      "order": 2,
+      "block": "blockInventory",
+      "blockId": "c4a3aab8-d570-4dfc-bce2-2f25fe935103",
+      "path": "result",
+      "shows": "Agent blocks using Jev (count and names), Exa blocks (count and names), and Agent blocks not using Jev (count, names and models)"
+    },
+    {
+      "order": 3,
+      "block": "totalTime",
+      "blockId": "8f0de8d2-b5c4-435c-86a9-1df7e006ff6a",
+      "path": "result",
+      "shows": "The final answer (restaurant list, saved results, or nothing found) followed by the total time to execute"
+    }
+  ],
+  "workflowInventory": {
+    "agentBlocksUsingJev": {
+      "count": 6,
+      "model": "jev-latest",
+      "blocks": [
+        "jevRouteScorer",
+        "jevInstantGuard",
+        "jevQueryOptimizer",
+        "jevResultGuard",
+        "jevFinalCheck",
+        "jevCacheMatch"
+      ]
+    },
+    "exaBlocks": {
+      "count": 2,
+      "blocks": [
+        "exaInstant",
+        "webSearch"
+      ]
+    },
+    "agentBlocksNotUsingJev": {
+      "count": 2,
+      "blocks": [
+        {
+          "name": "parseRequest",
+          "model": "gemini-3.5-flash-lite"
+        },
+        {
+          "name": "restaurantFinder",
+          "model": "gemini-3.5-flash-lite"
+        }
+      ]
+    }
+  }
 }
