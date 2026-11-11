@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "exportedAt": "2026-11-11T16:51:24.218Z",
+  "exportedAt": "2026-11-11T16:53:32.815Z",
   "workflow": {
     "id": "aa768eed-3851-4c08-b63e-db967baaad76",
     "name": "find a restaurant-with-jev-v2",
@@ -574,7 +574,7 @@
           "code": {
             "id": "code",
             "type": "code",
-            "value": "// Route BEFORE searching so a run pays for one search, not two.\n// Jev estimates whether a quick Exa Instant search will already list 5 good\n// restaurants. Likely -> Instant (with Fast as a safety net); otherwise go\n// straight to the Jev-optimized Fast search and skip Instant entirely.\nconst INSTANT_AT = 0.5;\nconst a = ((<jevroutescorer.answers> || {}).instant_likely) || {};\nconst p = typeof a.noul === 'number' && Number.isFinite(a.noul) ? Math.round(a.noul * 1000) / 1000 : null;\nconst route = p !== null && p >= INSTANT_AT ? 'instant' : 'fast';\nreturn { route, instantLikely: p, threshold: INSTANT_AT };"
+            "value": "// Route BEFORE searching so a run pays for one search, not two.\n// Jev estimates whether a quick Exa Instant search will already list 5 good\n// restaurants. Likely -> Instant (with Fast as a safety net); otherwise go\n// straight to the Jev-optimized Fast search and skip Instant entirely.\nconst INSTANT_AT = 0.65;\nconst a = ((<jevroutescorer.answers> || {}).instant_likely) || {};\nconst p = typeof a.noul === 'number' && Number.isFinite(a.noul) ? Math.round(a.noul * 1000) / 1000 : null;\nconst route = p !== null && p >= INSTANT_AT ? 'instant' : 'fast';\nreturn { route, instantLikely: p, threshold: INSTANT_AT };"
           },
           "language": {
             "id": "language",
@@ -1469,6 +1469,277 @@
           "stdout": {
             "type": "string",
             "description": "Console log output and debug messages from function execution"
+          }
+        },
+        "enabled": true,
+        "horizontalHandles": true,
+        "height": 48,
+        "advancedMode": false,
+        "errorEnabled": false,
+        "triggerMode": false,
+        "data": {},
+        "locked": false
+      },
+      "4275f825-332c-461e-9c55-935cad12dbc5": {
+        "id": "4275f825-332c-461e-9c55-935cad12dbc5",
+        "type": "exa",
+        "name": "webSearch",
+        "position": {
+          "x": 9190,
+          "y": 611
+        },
+        "subBlocks": {
+          "ids": {
+            "id": "ids",
+            "type": "long-input",
+            "value": null
+          },
+          "url": {
+            "id": "url",
+            "type": "long-input",
+            "value": null
+          },
+          "text": {
+            "id": "text",
+            "type": "switch",
+            "value": true
+          },
+          "type": {
+            "id": "type",
+            "type": "dropdown",
+            "value": "fast"
+          },
+          "urls": {
+            "id": "urls",
+            "type": "long-input",
+            "value": null
+          },
+          "model": {
+            "id": "model",
+            "type": "dropdown",
+            "value": null
+          },
+          "query": {
+            "id": "query",
+            "type": "long-input",
+            "value": "<buildsearchpayload.result.exaQuery>"
+          },
+          "apiKey": {
+            "id": "apiKey",
+            "type": "short-input",
+            "value": null
+          },
+          "effort": {
+            "id": "effort",
+            "type": "dropdown",
+            "value": null
+          },
+          "summary": {
+            "id": "summary",
+            "type": "switch",
+            "value": false
+          },
+          "category": {
+            "id": "category",
+            "type": "dropdown",
+            "value": null
+          },
+          "subpages": {
+            "id": "subpages",
+            "type": "short-input",
+            "value": null
+          },
+          "operation": {
+            "id": "operation",
+            "type": "dropdown",
+            "value": "exa_search"
+          },
+          "highlights": {
+            "id": "highlights",
+            "type": "switch",
+            "value": false
+          },
+          "numResults": {
+            "id": "numResults",
+            "type": "short-input",
+            "value": "8"
+          },
+          "extrasLinks": {
+            "id": "extrasLinks",
+            "type": "short-input",
+            "value": null
+          },
+          "maxAgeHours": {
+            "id": "maxAgeHours",
+            "type": "short-input",
+            "value": null
+          },
+          "endCrawlDate": {
+            "id": "endCrawlDate",
+            "type": "short-input",
+            "value": null
+          },
+          "outputSchema": {
+            "id": "outputSchema",
+            "type": "code",
+            "value": null
+          },
+          "summaryQuery": {
+            "id": "summaryQuery",
+            "type": "long-input",
+            "value": ""
+          },
+          "systemPrompt": {
+            "id": "systemPrompt",
+            "type": "long-input",
+            "value": null
+          },
+          "userLocation": {
+            "id": "userLocation",
+            "type": "short-input",
+            "value": null
+          },
+          "previousRunId": {
+            "id": "previousRunId",
+            "type": "short-input",
+            "value": null
+          },
+          "subpageTarget": {
+            "id": "subpageTarget",
+            "type": "long-input",
+            "value": null
+          },
+          "excludeDomains": {
+            "id": "excludeDomains",
+            "type": "long-input",
+            "value": null
+          },
+          "includeDomains": {
+            "id": "includeDomains",
+            "type": "long-input",
+            "value": null
+          },
+          "startCrawlDate": {
+            "id": "startCrawlDate",
+            "type": "short-input",
+            "value": null
+          },
+          "endPublishedDate": {
+            "id": "endPublishedDate",
+            "type": "short-input",
+            "value": null
+          },
+          "extrasImageLinks": {
+            "id": "extrasImageLinks",
+            "type": "short-input",
+            "value": null
+          },
+          "livecrawlTimeout": {
+            "id": "livecrawlTimeout",
+            "type": "short-input",
+            "value": 10000
+          },
+          "startPublishedDate": {
+            "id": "startPublishedDate",
+            "type": "short-input",
+            "value": null
+          },
+          "excludeSourceDomain": {
+            "id": "excludeSourceDomain",
+            "type": "switch",
+            "value": null
+          }
+        },
+        "outputs": {
+          "results": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Result identifier, usable as an id on the Get Contents operation"
+                },
+                "url": {
+                  "type": "string",
+                  "description": "The URL of the search result"
+                },
+                "text": {
+                  "type": "string",
+                  "description": "Text snippet or full content from the page"
+                },
+                "image": {
+                  "type": "string",
+                  "description": "URL of a representative image from the page"
+                },
+                "score": {
+                  "type": "number",
+                  "optional": true,
+                  "description": "Relevance score. Only returned by the legacy neural search type"
+                },
+                "title": {
+                  "type": "string",
+                  "description": "The title of the search result"
+                },
+                "author": {
+                  "type": "string",
+                  "description": "The author of the content"
+                },
+                "extras": {
+                  "type": "json",
+                  "description": "Extracted links and image links when requested"
+                },
+                "favicon": {
+                  "type": "string",
+                  "description": "URL of the site's favicon"
+                },
+                "summary": {
+                  "type": "string",
+                  "description": "A brief summary of the content"
+                },
+                "entities": {
+                  "type": "json",
+                  "description": "Structured entity data for company, people, and publication results"
+                },
+                "subpages": {
+                  "type": "json",
+                  "description": "Crawled subpages of the result"
+                },
+                "highlights": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Relevant snippets extracted from the page"
+                },
+                "publishedDate": {
+                  "type": "string",
+                  "description": "Date when the content was published"
+                },
+                "highlightScores": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "description": "Similarity score for each highlight"
+                }
+              }
+            },
+            "description": "Search results with titles, URLs, and text snippets"
+          },
+          "grounding": {
+            "type": "json",
+            "optional": true,
+            "description": "Field-level citations backing the synthesized output"
+          },
+          "requestId": {
+            "type": "string",
+            "description": "Exa request identifier, useful for support"
+          },
+          "structuredOutput": {
+            "type": "json",
+            "optional": true,
+            "description": "Synthesized answer matching outputSchema, when one was supplied"
           }
         },
         "enabled": true,
@@ -2718,277 +2989,6 @@
         "data": {},
         "locked": false
       },
-      "4275f825-332c-461e-9c55-935cad12dbc5": {
-        "id": "4275f825-332c-461e-9c55-935cad12dbc5",
-        "type": "exa",
-        "name": "webSearch",
-        "position": {
-          "x": 9190,
-          "y": 611
-        },
-        "subBlocks": {
-          "ids": {
-            "id": "ids",
-            "type": "long-input",
-            "value": null
-          },
-          "url": {
-            "id": "url",
-            "type": "long-input",
-            "value": null
-          },
-          "text": {
-            "id": "text",
-            "type": "switch",
-            "value": true
-          },
-          "type": {
-            "id": "type",
-            "type": "dropdown",
-            "value": "fast"
-          },
-          "urls": {
-            "id": "urls",
-            "type": "long-input",
-            "value": null
-          },
-          "model": {
-            "id": "model",
-            "type": "dropdown",
-            "value": null
-          },
-          "query": {
-            "id": "query",
-            "type": "long-input",
-            "value": "<buildsearchpayload.result.exaQuery>"
-          },
-          "apiKey": {
-            "id": "apiKey",
-            "type": "short-input",
-            "value": null
-          },
-          "effort": {
-            "id": "effort",
-            "type": "dropdown",
-            "value": null
-          },
-          "summary": {
-            "id": "summary",
-            "type": "switch",
-            "value": false
-          },
-          "category": {
-            "id": "category",
-            "type": "dropdown",
-            "value": null
-          },
-          "subpages": {
-            "id": "subpages",
-            "type": "short-input",
-            "value": null
-          },
-          "operation": {
-            "id": "operation",
-            "type": "dropdown",
-            "value": "exa_search"
-          },
-          "highlights": {
-            "id": "highlights",
-            "type": "switch",
-            "value": false
-          },
-          "numResults": {
-            "id": "numResults",
-            "type": "short-input",
-            "value": "8"
-          },
-          "extrasLinks": {
-            "id": "extrasLinks",
-            "type": "short-input",
-            "value": null
-          },
-          "maxAgeHours": {
-            "id": "maxAgeHours",
-            "type": "short-input",
-            "value": null
-          },
-          "endCrawlDate": {
-            "id": "endCrawlDate",
-            "type": "short-input",
-            "value": null
-          },
-          "outputSchema": {
-            "id": "outputSchema",
-            "type": "code",
-            "value": null
-          },
-          "summaryQuery": {
-            "id": "summaryQuery",
-            "type": "long-input",
-            "value": ""
-          },
-          "systemPrompt": {
-            "id": "systemPrompt",
-            "type": "long-input",
-            "value": null
-          },
-          "userLocation": {
-            "id": "userLocation",
-            "type": "short-input",
-            "value": null
-          },
-          "previousRunId": {
-            "id": "previousRunId",
-            "type": "short-input",
-            "value": null
-          },
-          "subpageTarget": {
-            "id": "subpageTarget",
-            "type": "long-input",
-            "value": null
-          },
-          "excludeDomains": {
-            "id": "excludeDomains",
-            "type": "long-input",
-            "value": null
-          },
-          "includeDomains": {
-            "id": "includeDomains",
-            "type": "long-input",
-            "value": null
-          },
-          "startCrawlDate": {
-            "id": "startCrawlDate",
-            "type": "short-input",
-            "value": null
-          },
-          "endPublishedDate": {
-            "id": "endPublishedDate",
-            "type": "short-input",
-            "value": null
-          },
-          "extrasImageLinks": {
-            "id": "extrasImageLinks",
-            "type": "short-input",
-            "value": null
-          },
-          "livecrawlTimeout": {
-            "id": "livecrawlTimeout",
-            "type": "short-input",
-            "value": 10000
-          },
-          "startPublishedDate": {
-            "id": "startPublishedDate",
-            "type": "short-input",
-            "value": null
-          },
-          "excludeSourceDomain": {
-            "id": "excludeSourceDomain",
-            "type": "switch",
-            "value": null
-          }
-        },
-        "outputs": {
-          "results": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string",
-                  "description": "Result identifier, usable as an id on the Get Contents operation"
-                },
-                "url": {
-                  "type": "string",
-                  "description": "The URL of the search result"
-                },
-                "text": {
-                  "type": "string",
-                  "description": "Text snippet or full content from the page"
-                },
-                "image": {
-                  "type": "string",
-                  "description": "URL of a representative image from the page"
-                },
-                "score": {
-                  "type": "number",
-                  "optional": true,
-                  "description": "Relevance score. Only returned by the legacy neural search type"
-                },
-                "title": {
-                  "type": "string",
-                  "description": "The title of the search result"
-                },
-                "author": {
-                  "type": "string",
-                  "description": "The author of the content"
-                },
-                "extras": {
-                  "type": "json",
-                  "description": "Extracted links and image links when requested"
-                },
-                "favicon": {
-                  "type": "string",
-                  "description": "URL of the site's favicon"
-                },
-                "summary": {
-                  "type": "string",
-                  "description": "A brief summary of the content"
-                },
-                "entities": {
-                  "type": "json",
-                  "description": "Structured entity data for company, people, and publication results"
-                },
-                "subpages": {
-                  "type": "json",
-                  "description": "Crawled subpages of the result"
-                },
-                "highlights": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  },
-                  "description": "Relevant snippets extracted from the page"
-                },
-                "publishedDate": {
-                  "type": "string",
-                  "description": "Date when the content was published"
-                },
-                "highlightScores": {
-                  "type": "array",
-                  "items": {
-                    "type": "number"
-                  },
-                  "description": "Similarity score for each highlight"
-                }
-              }
-            },
-            "description": "Search results with titles, URLs, and text snippets"
-          },
-          "grounding": {
-            "type": "json",
-            "optional": true,
-            "description": "Field-level citations backing the synthesized output"
-          },
-          "requestId": {
-            "type": "string",
-            "description": "Exa request identifier, useful for support"
-          },
-          "structuredOutput": {
-            "type": "json",
-            "optional": true,
-            "description": "Synthesized answer matching outputSchema, when one was supplied"
-          }
-        },
-        "enabled": true,
-        "horizontalHandles": true,
-        "height": 48,
-        "advancedMode": false,
-        "errorEnabled": false,
-        "triggerMode": false,
-        "data": {},
-        "locked": false
-      },
       "6a0285f8-7569-48e8-9249-3f23ac39590b": {
         "id": "6a0285f8-7569-48e8-9249-3f23ac39590b",
         "type": "function",
@@ -4221,7 +4221,7 @@
     },
     "metadata": {
       "name": "find a restaurant-with-jev-v2",
-      "exportedAt": "2026-11-11T16:51:24.218Z"
+      "exportedAt": "2026-11-11T16:53:32.815Z"
     }
   }
 }
