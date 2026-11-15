@@ -1,0 +1,30 @@
+{
+  "identifier": "customer-service-jev",
+  "url": "https://www.sim.ai/chat/customer-service-jev",
+  "title": "Customer Service (Jev)",
+  "description": "Tell us what you need and Jev will route you to the right team.",
+  "isActive": true,
+  "authType": "public",
+  "allowedEmails": [],
+  "customizations": {
+    "primaryColor": "var(--brand-hover)",
+    "welcomeMessage": "Hi there! How can I help you today?"
+  },
+  "outputConfigs": [
+    {
+      "blockId": "002d1729-baa2-49c9-a1b7-e8dbbadda43c",
+      "path": "result"
+    }
+  ],
+  "includeThinking": false,
+  "includeToolCalls": false,
+  "displayedMessages": [
+    {
+      "order": 1,
+      "block": "sendReply",
+      "blockId": "002d1729-baa2-49c9-a1b7-e8dbbadda43c",
+      "path": "result",
+      "shows": "The team reply chosen from Jev's scores (team acknowledgement, shoe-store follow-up question, or shoes-only notice), prefixed with an apology when Jev rates the message Very Angry"
+    }
+  ]
+}

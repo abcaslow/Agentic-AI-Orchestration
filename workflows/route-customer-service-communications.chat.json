@@ -1,0 +1,30 @@
+{
+  "identifier": "customer-service-help",
+  "url": "https://www.sim.ai/chat/customer-service-help",
+  "title": "Customer Service",
+  "description": "Questions about our men's and women's sport shoes or your order? We'll route you to the right team.",
+  "isActive": true,
+  "authType": "public",
+  "allowedEmails": [],
+  "customizations": {
+    "primaryColor": "var(--brand-hover)",
+    "welcomeMessage": "Hi! Welcome to our men's and women's sport shoe store. How can we help you today? Ask us about billing, sizing and fit, buying a pair, returns and exchanges, or shipping and delivery."
+  },
+  "outputConfigs": [
+    {
+      "blockId": "e726750d-e912-4752-9132-735676523651",
+      "path": "result"
+    }
+  ],
+  "includeThinking": false,
+  "includeToolCalls": false,
+  "displayedMessages": [
+    {
+      "order": 1,
+      "block": "sendReply",
+      "blockId": "e726750d-e912-4752-9132-735676523651",
+      "path": "result",
+      "shows": "The team reply chosen by the Claude router (or the shoes-only notice when Check Shoes finds no shoe mention), prefixed with an apology when Analyze Sentiment rates the message Very Angry"
+    }
+  ]
+}
