@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "exportedAt": "2026-11-16T05:40:35.922Z",
+  "exportedAt": "2026-11-16T05:59:34.042Z",
   "workflow": {
     "id": "a3978237-c007-41aa-a0ea-d4ea79338c8b",
     "name": "route-customer-service-jev",
@@ -894,7 +894,7 @@
           "code": {
             "id": "code",
             "type": "code",
-            "value": "const base = <billingreply.result> ?? <techsupportreply.result> ?? <salesreply.result> ?? <returnreply.result> ?? <shippingreply.result> ?? <followupreply.result> ?? <otherreply.result> ?? \"Thank you for reaching out. A member of our team will be in contact with you shortly.\";\nconst sentiment = <jevclassifier.answers.sentiment.choice>;\nif (sentiment === \"very_angry\") {\n  return \"We're very sorry for the frustration you've experienced, and we've marked your request as a priority. \" + base;\n}\nreturn base;"
+            "value": "const base = <billingreply.result> ?? <techsupportreply.result> ?? <salesreply.result> ?? <returnreply.result> ?? <shippingreply.result> ?? <followupreply.result> ?? <otherreply.result> ?? \"Thank you for reaching out. A member of our team will be in contact with you shortly.\";\nconst sentiment = <jevclassifier.answers.sentiment.choice>;\nif (sentiment === \"very_angry\") {\n  return \"We're very sorry for the frustration you've experienced, and we've marked your request as a priority. \" + base;\n}\nif (sentiment === \"irritated_frustrated\") {\n  return \"We're sorry for the frustration, and thank you for your patience. \" + base;\n}\nreturn base;"
           },
           "language": {
             "id": "language",
@@ -1196,7 +1196,7 @@
     "metadata": {
       "name": "route-customer-service-jev",
       "description": "",
-      "exportedAt": "2026-11-16T05:40:35.922Z"
+      "exportedAt": "2026-11-16T05:59:34.042Z"
     }
   }
 }

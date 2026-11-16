@@ -24,7 +24,7 @@
       "block": "sendReply",
       "blockId": "002d1729-baa2-49c9-a1b7-e8dbbadda43c",
       "path": "result",
-      "shows": "The team reply chosen from Jev's scores (team acknowledgement, shoe-scope follow-up question, or shoes-only notice), prefixed with an apology when Jev rates the message Very Angry"
+      "shows": "The team reply chosen from Jev's scores (team acknowledgement, shoe-scope follow-up question, or shoes-only notice), prefixed with an apology when Jev rates the message Very Angry or Irritated/Frustrated"
     }
   ]
 }

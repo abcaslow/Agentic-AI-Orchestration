@@ -24,7 +24,7 @@
       "block": "sendReply",
       "blockId": "e726750d-e912-4752-9132-735676523651",
       "path": "result",
-      "shows": "The team reply chosen by the Claude router (or the shoes-only notice when Check Shoes finds no shoe mention), prefixed with an apology when Analyze Sentiment rates the message Very Angry"
+      "shows": "The team reply chosen by the Claude router (or the shoes-only notice when Check Shoes finds no shoe mention), prefixed with an apology when Analyze Sentiment rates the message Very Angry or Irritated/Frustrated"
     }
   ]
 }

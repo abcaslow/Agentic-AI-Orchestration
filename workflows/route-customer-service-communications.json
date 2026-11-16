@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "exportedAt": "2026-11-16T05:40:37.192Z",
+  "exportedAt": "2026-11-16T05:59:35.071Z",
   "workflow": {
     "id": "e8f5d78f-6c95-4f25-a1f7-2fab0b792356",
     "name": "route-customer-service-communications",
@@ -1223,7 +1223,7 @@
           "code": {
             "id": "code",
             "type": "code",
-            "value": "const base = <billingreply.result> ?? <techsupportreply.result> ?? <salesreply.result> ?? <returnreply.result> ?? <shippingreply.result> ?? <otherreply.result> ?? \"Thank you for reaching out. A member of our team will be in contact with you shortly.\";\nconst sentiment = <analyzesentiment.sentiment>;\nif (sentiment === \"Very Angry\") {\n  return \"We're very sorry for the frustration you've experienced, and we've marked your request as a priority. \" + base;\n}\nreturn base;"
+            "value": "const base = <billingreply.result> ?? <techsupportreply.result> ?? <salesreply.result> ?? <returnreply.result> ?? <shippingreply.result> ?? <otherreply.result> ?? \"Thank you for reaching out. A member of our team will be in contact with you shortly.\";\nconst sentiment = <analyzesentiment.sentiment>;\nif (sentiment === \"Very Angry\") {\n  return \"We're very sorry for the frustration you've experienced, and we've marked your request as a priority. \" + base;\n}\nif (sentiment === \"Irritated/Frustrated\") {\n  return \"We're sorry for the frustration, and thank you for your patience. \" + base;\n}\nreturn base;"
           },
           "language": {
             "id": "language",
@@ -1467,7 +1467,7 @@
     "metadata": {
       "name": "route-customer-service-communications",
       "description": "",
-      "exportedAt": "2026-11-16T05:40:37.192Z"
+      "exportedAt": "2026-11-16T05:59:35.071Z"
     }
   }
 }
