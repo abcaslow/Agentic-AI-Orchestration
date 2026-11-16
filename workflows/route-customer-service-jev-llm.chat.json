@@ -1,0 +1,41 @@
+{
+  "identifier": "customer-service-jev-llm",
+  "url": "https://www.sim.ai/chat/customer-service-jev-llm",
+  "title": "Customer Service (Jev + LLM)",
+  "description": "Tell us what you need and we'll route you to the right team.",
+  "isActive": true,
+  "authType": "public",
+  "allowedEmails": [],
+  "customizations": {
+    "primaryColor": "var(--brand-hover)",
+    "welcomeMessage": "Hi there! How can I help you today?"
+  },
+  "outputConfigs": [
+    {
+      "blockId": "6784b635-8b94-4a7b-9376-03aa9d30b4a9",
+      "path": "content"
+    },
+    {
+      "blockId": "0b7425bb-a347-4e4e-bb17-220d6aab2b10",
+      "path": "result"
+    }
+  ],
+  "includeThinking": false,
+  "includeToolCalls": false,
+  "displayedMessages": [
+    {
+      "order": 1,
+      "block": "Write Reply",
+      "blockId": "6784b635-8b94-4a7b-9376-03aa9d30b4a9",
+      "path": "content",
+      "shows": "LLM-written situational reply (Claude Sonnet 5.5) based on the customer's message, the Route by Category branch and Jev's category/sentiment/shoe_scope scores, with 20-message conversation memory; apologises and flags priority for angry customers"
+    },
+    {
+      "order": 2,
+      "block": "Fallback Reply",
+      "blockId": "0b7425bb-a347-4e4e-bb17-220d6aab2b10",
+      "path": "result",
+      "shows": "Only when Write Reply fails: generic 'a member of our customer service team will be in contact shortly' reply, prefixed with an apology for angry or irritated customers"
+    }
+  ]
+}
