@@ -14,6 +14,10 @@
     {
       "blockId": "002d1729-baa2-49c9-a1b7-e8dbbadda43c",
       "path": "result"
+    },
+    {
+      "blockId": "878cd3c2-e37e-4903-bb77-ec68deebbc03",
+      "path": "result"
     }
   ],
   "includeThinking": false,
@@ -21,10 +25,17 @@
   "displayedMessages": [
     {
       "order": 1,
-      "block": "sendReply",
+      "block": "Send Reply",
       "blockId": "002d1729-baa2-49c9-a1b7-e8dbbadda43c",
       "path": "result",
-      "shows": "The team reply chosen from Jev's scores (team acknowledgement, shoe-scope follow-up question, or shoes-only notice), prefixed with an apology when Jev rates the message Very Angry or Irritated/Frustrated"
+      "shows": "Canned team reply chosen from Jev's category/sentiment/shoe_scope"
+    },
+    {
+      "order": 2,
+      "block": "Timing Line",
+      "blockId": "878cd3c2-e37e-4903-bb77-ec68deebbc03",
+      "path": "result",
+      "shows": "'\u23f1 Workflow X s \u00b7 Jev Classifier X s'"
     }
   ]
 }

@@ -14,6 +14,10 @@
     {
       "blockId": "e726750d-e912-4752-9132-735676523651",
       "path": "result"
+    },
+    {
+      "blockId": "70579aea-b944-45ff-9554-c06d7bfbf8f8",
+      "path": "result"
     }
   ],
   "includeThinking": false,
@@ -21,10 +25,17 @@
   "displayedMessages": [
     {
       "order": 1,
-      "block": "sendReply",
+      "block": "Send Reply",
       "blockId": "e726750d-e912-4752-9132-735676523651",
       "path": "result",
-      "shows": "The team reply chosen by the Claude router (or the shoes-only notice when Check Shoes finds no shoe mention), prefixed with an apology when Analyze Sentiment rates the message Very Angry or Irritated/Frustrated"
+      "shows": "Canned team reply chosen by the Classify Request router, with apology for irritated/angry customers"
+    },
+    {
+      "order": 2,
+      "block": "Timing Line",
+      "blockId": "70579aea-b944-45ff-9554-c06d7bfbf8f8",
+      "path": "result",
+      "shows": "'\u23f1 Workflow X s \u00b7 Analyze Sentiment X s \u00b7 Check Shoes X s' (router not timed)"
     }
   ]
 }

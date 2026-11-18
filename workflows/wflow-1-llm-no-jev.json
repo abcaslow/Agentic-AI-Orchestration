@@ -1,9 +1,9 @@
 {
   "version": "1.0",
-  "exportedAt": "2026-11-16T05:59:35.071Z",
+  "exportedAt": "2026-11-18T18:40:06.139Z",
   "workflow": {
     "id": "e8f5d78f-6c95-4f25-a1f7-2fab0b792356",
-    "name": "route-customer-service-communications",
+    "name": "wflow-1-llm-no-jev",
     "description": "",
     "workspaceId": "19e4fb7d-7008-4b24-8217-5c0f83d3b0c0",
     "folderPath": "/"
@@ -35,7 +35,7 @@
           "runMetadata": {
             "id": "runMetadata",
             "type": "switch",
-            "value": false
+            "value": true
           }
         },
         "outputs": {
@@ -436,7 +436,7 @@
         },
         "enabled": true,
         "horizontalHandles": true,
-        "height": 0,
+        "height": 48,
         "advancedMode": false,
         "errorEnabled": false,
         "triggerMode": false,
@@ -623,7 +623,7 @@
         },
         "enabled": true,
         "horizontalHandles": true,
-        "height": 0,
+        "height": 48,
         "advancedMode": false,
         "errorEnabled": false,
         "triggerMode": false,
@@ -700,7 +700,7 @@
           "code": {
             "id": "code",
             "type": "code",
-            "value": "const category =\n  <billingreply.result> != null ? \"Billing\" :\n  <techsupportreply.result> != null ? \"Technical Support\" :\n  <salesreply.result> != null ? \"Sales\" :\n  <returnreply.result> != null ? \"Product Return\" :\n  <shippingreply.result> != null ? \"Shipping\" : \"Other\";\nconst shoes = <checkshoes.references_shoes>;\nconst shoeReason = <checkshoes.reason>;\nconst reasoning = String(shoes) === \"false\"\n  ? `Not about shoes (Claude shoe check: ${shoeReason ?? \"no reason given\"}) - sent to Other with the shoes-only reply`\n  : (<classifyrequest.reasoning> ?? \"\");\nreturn {\n  message: <start.input> ?? \"\",\n  category,\n  reply: <sendreply.result>,\n  router_reasoning: reasoning,\n  conversation_id: <start.conversationId> ?? \"\",\n  source: \"Claude\",\n  sentiment: <analyzesentiment.sentiment> ?? null,\n  sentiment_reason: <analyzesentiment.reason> ?? \"\"\n};"
+            "value": "const startedAt = Date.parse(<start.metadata.startTime> ?? \"\");\nconst Duration = Number.isFinite(startedAt) ? Math.round((Date.now() - startedAt) / 10) / 100 : null; // seconds, run start -> log\nconst category =\n  <billingreply.result> != null ? \"Billing\" :\n  <techsupportreply.result> != null ? \"Technical Support\" :\n  <salesreply.result> != null ? \"Sales\" :\n  <returnreply.result> != null ? \"Product Return\" :\n  <shippingreply.result> != null ? \"Shipping\" : \"Other\";\nconst shoes = <checkshoes.references_shoes>;\nconst shoeReason = <checkshoes.reason>;\nconst reasoning = String(shoes) === \"false\"\n  ? `Not about shoes (Claude shoe check: ${shoeReason ?? \"no reason given\"}) - sent to Other with the shoes-only reply`\n  : (<classifyrequest.reasoning> ?? \"\");\nreturn {\n  message: <start.input> ?? \"\",\n  category,\n  reply: <sendreply.result>,\n  router_reasoning: reasoning,\n  conversation_id: <start.conversationId> ?? \"\",\n  source: \"Claude\",\n  sentiment: <analyzesentiment.sentiment> ?? null,\n  sentiment_reason: <analyzesentiment.reason> ?? \"\",\n  Duration\n};"
           },
           "language": {
             "id": "language",
@@ -758,7 +758,7 @@
           "data": {
             "id": "data",
             "type": "code",
-            "value": "{\n  \"message\": \"<buildlogrow.result.message>\",\n  \"category\": \"<buildlogrow.result.category>\",\n  \"reply\": \"<buildlogrow.result.reply>\",\n  \"router_reasoning\": \"<buildlogrow.result.router_reasoning>\",\n  \"conversation_id\": \"<buildlogrow.result.conversation_id>\",\n  \"source\": \"<buildlogrow.result.source>\",\n  \"sentiment\": \"<buildlogrow.result.sentiment>\",\n  \"sentiment_reason\": \"<buildlogrow.result.sentiment_reason>\"\n}"
+            "value": "{\n  \"message\": \"<buildlogrow.result.message>\",\n  \"category\": \"<buildlogrow.result.category>\",\n  \"reply\": \"<buildlogrow.result.reply>\",\n  \"router_reasoning\": \"<buildlogrow.result.router_reasoning>\",\n  \"conversation_id\": \"<buildlogrow.result.conversation_id>\",\n  \"source\": \"<buildlogrow.result.source>\",\n  \"sentiment\": \"<buildlogrow.result.sentiment>\",\n  \"sentiment_reason\": \"<buildlogrow.result.sentiment_reason>\",\n  \"Duration\": <buildlogrow.result.Duration>\n}"
           },
           "rows": {
             "id": "rows",
@@ -1268,6 +1268,64 @@
         "triggerMode": false,
         "data": {},
         "locked": false
+      },
+      "70579aea-b944-45ff-9554-c06d7bfbf8f8": {
+        "id": "70579aea-b944-45ff-9554-c06d7bfbf8f8",
+        "type": "function",
+        "name": "Timing Line",
+        "position": {
+          "x": 2500,
+          "y": 508
+        },
+        "subBlocks": {
+          "code": {
+            "id": "code",
+            "type": "code",
+            "value": "// Timing summary shown in the chat after the reply\nconst startedAt = Date.parse(<start.metadata.startTime> ?? \"\");\nconst secs = ms => (Number(ms) / 1000).toFixed(2) + \" s\";\nconst parts = [];\nif (Number.isFinite(startedAt)) parts.push(\"Workflow \" + secs(Date.now() - startedAt));\nconst agents = [\n  [\"Analyze Sentiment\", <analyzesentiment.providerTiming>],\n  [\"Check Shoes\", <checkshoes.providerTiming>]\n];\nfor (const [name, timing] of agents) {\n  if (timing && timing.duration != null) parts.push(name + \" \" + secs(timing.duration));\n}\nreturn \"\u23f1 \" + parts.join(\" \u00b7 \");"
+          },
+          "language": {
+            "id": "language",
+            "type": "dropdown",
+            "value": "javascript"
+          },
+          "sandboxId": {
+            "id": "sandboxId",
+            "type": "combobox",
+            "value": null
+          },
+          "secretScope": {
+            "id": "secretScope",
+            "type": "dropdown",
+            "value": "all"
+          },
+          "mountedSecrets": {
+            "id": "mountedSecrets",
+            "type": "dropdown",
+            "value": null
+          }
+        },
+        "outputs": {
+          "files": {
+            "type": "file[]",
+            "description": "Files the code wrote to /tmp/sim/outputs, ready to attach or upload downstream"
+          },
+          "result": {
+            "type": "json",
+            "description": "Structured result emitted by the executed code"
+          },
+          "stdout": {
+            "type": "string",
+            "description": "Console log output and debug messages from function execution"
+          }
+        },
+        "enabled": true,
+        "horizontalHandles": true,
+        "height": 0,
+        "advancedMode": false,
+        "errorEnabled": false,
+        "triggerMode": false,
+        "data": {},
+        "locked": false
       }
     },
     "edges": [
@@ -1329,6 +1387,15 @@
         "id": "3ac29398-3dec-414d-8df4-db1ffe79c644",
         "source": "10b7e43c-10cb-4c60-b7ea-85f60693b36d",
         "target": "669d2e23-738a-40f9-a74e-928e21e14829",
+        "sourceHandle": "source",
+        "targetHandle": "target",
+        "type": "default",
+        "data": {}
+      },
+      {
+        "id": "60fdd7a0-3bcc-4329-b142-41547c297cbc",
+        "source": "669d2e23-738a-40f9-a74e-928e21e14829",
+        "target": "70579aea-b944-45ff-9554-c06d7bfbf8f8",
         "sourceHandle": "source",
         "targetHandle": "target",
         "type": "default",
@@ -1465,9 +1532,9 @@
     "parallels": {},
     "variables": {},
     "metadata": {
-      "name": "route-customer-service-communications",
+      "name": "wflow-1-llm-no-jev",
       "description": "",
-      "exportedAt": "2026-11-16T05:59:35.071Z"
+      "exportedAt": "2026-11-18T18:40:06.139Z"
     }
   }
 }

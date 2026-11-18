@@ -1,63 +1,21 @@
 {
   "version": "1.0",
-  "exportedAt": "2026-11-16T17:30:19.073Z",
+  "exportedAt": "2026-11-18T18:40:10.646Z",
   "workflow": {
     "id": "ebb9089e-ed7f-4282-8881-ae24a60dbab4",
-    "name": "route-customer-service-jev-llm",
+    "name": "wflow-3-jev-and-llm",
     "description": "",
     "workspaceId": "19e4fb7d-7008-4b24-8217-5c0f83d3b0c0",
     "folderPath": "/"
   },
   "state": {
     "blocks": {
-      "96a456b1-746f-49f0-90ab-98cdf7e6d2c7": {
-        "id": "96a456b1-746f-49f0-90ab-98cdf7e6d2c7",
-        "type": "condition",
-        "name": "Route by Category",
-        "position": {
-          "x": 1020,
-          "y": 300
-        },
-        "subBlocks": {
-          "conditions": {
-            "id": "conditions",
-            "type": "condition-input",
-            "value": "[{\"title\":\"If\",\"value\":\"<jevclassifier.answers.shoe_scope.choice> === 'unrelated' && Number(<jevclassifier.answers.shoe_scope.confidence> ?? 1) >= 0.6\",\"id\":\"96a456b1-746f-49f0-90ab-98cdf7e6d2c7-if\"},{\"title\":\"Else If\",\"value\":\"<jevclassifier.answers.shoe_scope.choice> === 'unclear' || Number(<jevclassifier.answers.shoe_scope.confidence> ?? 1) < 0.6\",\"id\":\"96a456b1-746f-49f0-90ab-98cdf7e6d2c7-else-if-0\"},{\"title\":\"Else If\",\"value\":\"Number(<jevclassifier.answers.category.confidence> ?? 0) < 0.6\",\"id\":\"96a456b1-746f-49f0-90ab-98cdf7e6d2c7-else-if-1\"},{\"title\":\"Else If\",\"value\":\"<jevclassifier.answers.category.choice> === 'billing'\",\"id\":\"96a456b1-746f-49f0-90ab-98cdf7e6d2c7-else-if-2\"},{\"title\":\"Else If\",\"value\":\"<jevclassifier.answers.category.choice> === 'support'\",\"id\":\"96a456b1-746f-49f0-90ab-98cdf7e6d2c7-else-if-3\"},{\"title\":\"Else If\",\"value\":\"<jevclassifier.answers.category.choice> === 'sales'\",\"id\":\"96a456b1-746f-49f0-90ab-98cdf7e6d2c7-else-if-4\"},{\"title\":\"Else If\",\"value\":\"<jevclassifier.answers.category.choice> === 'return'\",\"id\":\"96a456b1-746f-49f0-90ab-98cdf7e6d2c7-else-if-5\"},{\"title\":\"Else If\",\"value\":\"<jevclassifier.answers.category.choice> === 'shipping'\",\"id\":\"96a456b1-746f-49f0-90ab-98cdf7e6d2c7-else-if-6\"},{\"title\":\"Else\",\"value\":\"\",\"id\":\"96a456b1-746f-49f0-90ab-98cdf7e6d2c7-else\"}]"
-          }
-        },
-        "outputs": {
-          "selectedPath": {
-            "type": "json",
-            "description": "Selected execution path"
-          },
-          "selectedTitle": {
-            "type": "string",
-            "description": "Title of the selected branch (e.g. \"if\", \"else if\", \"else\"); null when no branch fired"
-          },
-          "selectedOption": {
-            "type": "string",
-            "description": "Selected condition option ID"
-          },
-          "conditionResult": {
-            "type": "boolean",
-            "description": "Whether the selected branch's own test passed: true when an if/else-if condition matched, false when the else branch or no branch fired"
-          }
-        },
-        "enabled": true,
-        "horizontalHandles": true,
-        "height": 48,
-        "advancedMode": false,
-        "errorEnabled": false,
-        "triggerMode": false,
-        "data": {},
-        "locked": false
-      },
       "fc447c9b-7a50-4ec7-a612-34bbafbe06dc": {
         "id": "fc447c9b-7a50-4ec7-a612-34bbafbe06dc",
         "type": "agent",
         "name": "Jev Classifier",
         "position": {
-          "x": 690,
+          "x": 750,
           "y": 360
         },
         "subBlocks": {
@@ -300,7 +258,7 @@
         "type": "start_trigger",
         "name": "Start",
         "position": {
-          "x": 390,
+          "x": 450,
           "y": 390
         },
         "subBlocks": {
@@ -320,7 +278,7 @@
           "runMetadata": {
             "id": "runMetadata",
             "type": "switch",
-            "value": false
+            "value": true
           }
         },
         "outputs": {
@@ -346,118 +304,53 @@
         "data": {},
         "locked": false
       },
-      "08404c72-174a-4e81-aa8f-672bd9793860": {
-        "id": "08404c72-174a-4e81-aa8f-672bd9793860",
-        "type": "table_v2",
-        "name": "Log Chat Request",
+      "298dd49a-b7a6-4e8d-8e0e-b0692e9de079": {
+        "id": "298dd49a-b7a6-4e8d-8e0e-b0692e9de079",
+        "type": "function",
+        "name": "Build Log Row",
         "position": {
-          "x": 2310,
-          "y": 660
+          "x": 1440,
+          "y": 390
         },
         "subBlocks": {
-          "data": {
-            "id": "data",
+          "code": {
+            "id": "code",
             "type": "code",
-            "value": "<buildlogrow.result>"
+            "value": "const startedAt = Date.parse(<start.metadata.startTime> ?? \"\");\nconst Duration = Number.isFinite(startedAt) ? Math.round((Date.now() - startedAt) / 10) / 100 : null; // seconds, run start -> log\n// Agent run times in seconds (null when the agent did not run)\nconst agentSecs = t => (t && t.duration != null ? Math.round(Number(t.duration) / 10) / 100 : null);\nconst jevSecs = agentSecs(<jevclassifier.providerTiming>);\nconst llmSecs = agentSecs(<writereply.providerTiming>);\n// The reply shown to the customer: Write Reply, or Fallback Reply when Write Reply failed\nconst response = <writereply.content> ?? <fallbackreply.result> ?? \"\";\nconst SENTIMENT_LABELS = { calm: \"Calm\", irritated: \"Irritated/Frustrated\", angry: \"Very Angry\" };\nconst jev = <jevclassifier.answers.category>;\nconst scope = <jevclassifier.answers.shoe_scope>;\nconst jevSentiment = <jevclassifier.answers.sentiment>;\n// Category comes from the branch Route by Category selected (null when Jev failed)\nconst selected = String(<routebycategory.selectedOption> ?? \"\");\nconst m = selected.match(/(else-if-\\d+|else|if)$/);\nconst branch = m ? m[1] : null;\nconst BRANCH_CATEGORY = {\n  \"else-if-2\": \"Billing\",\n  \"else-if-3\": \"Technical Support\",\n  \"else-if-4\": \"Sales\",\n  \"else-if-5\": \"Product Return\",\n  \"else-if-6\": \"Shipping\"\n};\nconst category =\n  BRANCH_CATEGORY[branch] ??\n  ((branch === \"else-if-0\" && jev && jev.choice === \"sales\") ? \"Sales\" : \"Other\");\nconst fmt = v => (v != null ? Number(v).toFixed(2) : \"n/a\");\nlet categoryReason = \"\";\nif (jev && jev.choice) {\n  const p = jev.probabilities || {};\n  categoryReason = `${jev.choice} (confidence ${fmt(jev.confidence)}; billing ${fmt(p.billing)}, support ${fmt(p.support)}, sales ${fmt(p.sales)}, return ${fmt(p.return)}, shipping ${fmt(p.shipping)}, other ${fmt(p.other)})`;\n} else if (<jevclassifier.error>) {\n  categoryReason = `Jev failed, defaulted to Other: ${<jevclassifier.error>}`;\n}\nlet sentiment = null;\nlet sentimentReason = \"\";\nif (jevSentiment && jevSentiment.choice) {\n  sentiment = SENTIMENT_LABELS[jevSentiment.choice] ?? null;\n  const p = jevSentiment.probabilities || {};\n  sentimentReason = `${jevSentiment.choice} (confidence ${fmt(jevSentiment.confidence)}; calm ${fmt(p.calm)}, irritated ${fmt(p.irritated)}, angry ${fmt(p.angry)})`;\n}\nlet shoeScopeReason = \"\";\nif (scope && scope.choice) {\n  const p = scope.probabilities || {};\n  shoeScopeReason = `${scope.choice} (confidence ${fmt(scope.confidence)}; unrelated ${fmt(p.unrelated)}, unclear ${fmt(p.unclear)}, clear ${fmt(p.clear)})`;\n}\nreturn {\n  message: <start.input> ?? \"\",\n  category,\n  category_reason: categoryReason,\n  conversation_id: <start.conversationId> ?? \"\",\n  source: \"Jev\",\n  sentiment_reason: sentimentReason,\n  sentiment,\n  shoe_scope_reason: shoeScopeReason,\n  createdAt: new Date().toISOString().slice(0, 19),\n  Duration,\n  jev: jevSecs,\n  llm: llmSecs,\n  response,\n  workflow_name: \"wflow-3-jev-and-llm\"\n};"
           },
-          "rows": {
-            "id": "rows",
-            "type": "code",
-            "value": null
-          },
-          "limit": {
-            "id": "limit",
-            "type": "short-input",
-            "value": null
-          },
-          "order": {
-            "id": "order",
-            "type": "short-input",
-            "value": null
-          },
-          "rowId": {
-            "id": "rowId",
-            "type": "short-input",
-            "value": null
-          },
-          "cursor": {
-            "id": "cursor",
-            "type": "short-input",
-            "value": null
-          },
-          "filter": {
-            "id": "filter",
-            "type": "code",
-            "value": null
-          },
-          "eventType": {
-            "id": "eventType",
+          "language": {
+            "id": "language",
             "type": "dropdown",
+            "value": "javascript"
+          },
+          "sandboxId": {
+            "id": "sandboxId",
+            "type": "combobox",
             "value": null
           },
-          "operation": {
-            "id": "operation",
+          "secretScope": {
+            "id": "secretScope",
             "type": "dropdown",
-            "value": "insert_row"
+            "value": "all"
           },
-          "sortBuilder": {
-            "id": "sortBuilder",
-            "type": "sort-builder",
-            "value": null
-          },
-          "watchColumns": {
-            "id": "watchColumns",
+          "mountedSecrets": {
+            "id": "mountedSecrets",
             "type": "dropdown",
-            "value": null
-          },
-          "filterBuilder": {
-            "id": "filterBuilder",
-            "type": "filter-builder",
-            "value": null
-          },
-          "manualTableId": {
-            "id": "manualTableId",
-            "type": "short-input",
-            "value": null
-          },
-          "outputColumns": {
-            "id": "outputColumns",
-            "type": "dropdown",
-            "value": null
-          },
-          "tableSelector": {
-            "id": "tableSelector",
-            "type": "table-selector",
-            "value": null
-          },
-          "includeHeaders": {
-            "id": "includeHeaders",
-            "type": "switch",
-            "value": null
-          },
-          "manualConflictColumn": {
-            "id": "manualConflictColumn",
-            "type": "short-input",
-            "value": null
-          },
-          "conflictColumnSelector": {
-            "id": "conflictColumnSelector",
-            "type": "column-selector",
             "value": null
           }
         },
         "outputs": {
-          "row": {
+          "files": {
+            "type": "file[]",
+            "description": "Files the code wrote to /tmp/sim/outputs, ready to attach or upload downstream"
+          },
+          "result": {
             "type": "json",
-            "description": "Inserted row data"
+            "description": "Structured result emitted by the executed code"
           },
-          "message": {
+          "stdout": {
             "type": "string",
-            "description": "Status message"
-          },
-          "success": {
-            "type": "boolean",
-            "description": "Whether row was inserted"
+            "description": "Console log output and debug messages from function execution"
           }
         },
         "enabled": true,
@@ -466,14 +359,65 @@
         "advancedMode": false,
         "errorEnabled": false,
         "triggerMode": false,
-        "data": {
-          "canonicalModes": {
-            "tableId": "basic",
-            "sortInput": "basic",
-            "filterInput": "basic",
-            "conflictColumn": "basic"
+        "data": {},
+        "locked": false
+      },
+      "a9cbf077-6e67-4fb5-ae0f-ad627b554b38": {
+        "id": "a9cbf077-6e67-4fb5-ae0f-ad627b554b38",
+        "type": "function",
+        "name": "Timing Line",
+        "position": {
+          "x": 1440,
+          "y": 750
+        },
+        "subBlocks": {
+          "code": {
+            "id": "code",
+            "type": "code",
+            "value": "// Timing summary shown in the chat after the reply\nconst startedAt = Date.parse(<start.metadata.startTime> ?? \"\");\nconst secs = ms => (Number(ms) / 1000).toFixed(2) + \" s\";\nconst parts = [];\nif (Number.isFinite(startedAt)) parts.push(\"Workflow \" + secs(Date.now() - startedAt));\nconst agents = [\n  [\"Jev Classifier\", <jevclassifier.providerTiming>],\n  [\"Write Reply\", <writereply.providerTiming>]\n];\nfor (const [name, timing] of agents) {\n  if (timing && timing.duration != null) parts.push(name + \" \" + secs(timing.duration));\n}\nreturn \"\u23f1 \" + parts.join(\" \u00b7 \");"
+          },
+          "language": {
+            "id": "language",
+            "type": "dropdown",
+            "value": "javascript"
+          },
+          "sandboxId": {
+            "id": "sandboxId",
+            "type": "combobox",
+            "value": null
+          },
+          "secretScope": {
+            "id": "secretScope",
+            "type": "dropdown",
+            "value": "all"
+          },
+          "mountedSecrets": {
+            "id": "mountedSecrets",
+            "type": "dropdown",
+            "value": null
           }
         },
+        "outputs": {
+          "files": {
+            "type": "file[]",
+            "description": "Files the code wrote to /tmp/sim/outputs, ready to attach or upload downstream"
+          },
+          "result": {
+            "type": "json",
+            "description": "Structured result emitted by the executed code"
+          },
+          "stdout": {
+            "type": "string",
+            "description": "Console log output and debug messages from function execution"
+          }
+        },
+        "enabled": true,
+        "horizontalHandles": true,
+        "height": 0,
+        "advancedMode": false,
+        "errorEnabled": false,
+        "triggerMode": false,
+        "data": {},
         "locked": false
       },
       "6784b635-8b94-4a7b-9376-03aa9d30b4a9": {
@@ -481,8 +425,8 @@
         "type": "agent",
         "name": "Write Reply",
         "position": {
-          "x": 1450,
-          "y": 514
+          "x": 1410,
+          "y": 0
         },
         "subBlocks": {
           "files": {
@@ -711,8 +655,8 @@
         "type": "function",
         "name": "Fallback Reply",
         "position": {
-          "x": 1780,
-          "y": 112
+          "x": 1440,
+          "y": 210
         },
         "subBlocks": {
           "code": {
@@ -757,60 +701,174 @@
         },
         "enabled": true,
         "horizontalHandles": true,
-        "height": 0,
+        "height": 48,
         "advancedMode": false,
         "errorEnabled": false,
         "triggerMode": false,
         "data": {},
         "locked": false
       },
-      "298dd49a-b7a6-4e8d-8e0e-b0692e9de079": {
-        "id": "298dd49a-b7a6-4e8d-8e0e-b0692e9de079",
-        "type": "function",
-        "name": "Build Log Row",
+      "08404c72-174a-4e81-aa8f-672bd9793860": {
+        "id": "08404c72-174a-4e81-aa8f-672bd9793860",
+        "type": "table_v2",
+        "name": "Log Chat Request",
         "position": {
-          "x": 1880,
-          "y": 390
+          "x": 1440,
+          "y": 540
         },
         "subBlocks": {
-          "code": {
-            "id": "code",
+          "data": {
+            "id": "data",
             "type": "code",
-            "value": "const SENTIMENT_LABELS = { calm: \"Calm\", irritated: \"Irritated/Frustrated\", angry: \"Very Angry\" };\nconst jev = <jevclassifier.answers.category>;\nconst scope = <jevclassifier.answers.shoe_scope>;\nconst jevSentiment = <jevclassifier.answers.sentiment>;\n// Category comes from the branch Route by Category selected (null when Jev failed)\nconst selected = String(<routebycategory.selectedOption> ?? \"\");\nconst m = selected.match(/(else-if-\\d+|else|if)$/);\nconst branch = m ? m[1] : null;\nconst BRANCH_CATEGORY = {\n  \"else-if-2\": \"Billing\",\n  \"else-if-3\": \"Technical Support\",\n  \"else-if-4\": \"Sales\",\n  \"else-if-5\": \"Product Return\",\n  \"else-if-6\": \"Shipping\"\n};\nconst category =\n  BRANCH_CATEGORY[branch] ??\n  ((branch === \"else-if-0\" && jev && jev.choice === \"sales\") ? \"Sales\" : \"Other\");\nconst fmt = v => (v != null ? Number(v).toFixed(2) : \"n/a\");\nlet categoryReason = \"\";\nif (jev && jev.choice) {\n  const p = jev.probabilities || {};\n  categoryReason = `${jev.choice} (confidence ${fmt(jev.confidence)}; billing ${fmt(p.billing)}, support ${fmt(p.support)}, sales ${fmt(p.sales)}, return ${fmt(p.return)}, shipping ${fmt(p.shipping)}, other ${fmt(p.other)})`;\n} else if (<jevclassifier.error>) {\n  categoryReason = `Jev failed, defaulted to Other: ${<jevclassifier.error>}`;\n}\nlet sentiment = null;\nlet sentimentReason = \"\";\nif (jevSentiment && jevSentiment.choice) {\n  sentiment = SENTIMENT_LABELS[jevSentiment.choice] ?? null;\n  const p = jevSentiment.probabilities || {};\n  sentimentReason = `${jevSentiment.choice} (confidence ${fmt(jevSentiment.confidence)}; calm ${fmt(p.calm)}, irritated ${fmt(p.irritated)}, angry ${fmt(p.angry)})`;\n}\nlet shoeScopeReason = \"\";\nif (scope && scope.choice) {\n  const p = scope.probabilities || {};\n  shoeScopeReason = `${scope.choice} (confidence ${fmt(scope.confidence)}; unrelated ${fmt(p.unrelated)}, unclear ${fmt(p.unclear)}, clear ${fmt(p.clear)})`;\n}\nreturn {\n  message: <start.input> ?? \"\",\n  category,\n  category_reason: categoryReason,\n  conversation_id: <start.conversationId> ?? \"\",\n  source: \"Jev\",\n  sentiment_reason: sentimentReason,\n  sentiment,\n  shoe_scope_reason: shoeScopeReason,\n  createdAt: new Date().toISOString().slice(0, 19)\n};"
+            "value": "<buildlogrow.result>"
           },
-          "language": {
-            "id": "language",
-            "type": "dropdown",
-            "value": "javascript"
-          },
-          "sandboxId": {
-            "id": "sandboxId",
-            "type": "combobox",
+          "rows": {
+            "id": "rows",
+            "type": "code",
             "value": null
           },
-          "secretScope": {
-            "id": "secretScope",
-            "type": "dropdown",
-            "value": "all"
+          "limit": {
+            "id": "limit",
+            "type": "short-input",
+            "value": null
           },
-          "mountedSecrets": {
-            "id": "mountedSecrets",
+          "order": {
+            "id": "order",
+            "type": "short-input",
+            "value": null
+          },
+          "rowId": {
+            "id": "rowId",
+            "type": "short-input",
+            "value": null
+          },
+          "cursor": {
+            "id": "cursor",
+            "type": "short-input",
+            "value": null
+          },
+          "filter": {
+            "id": "filter",
+            "type": "code",
+            "value": null
+          },
+          "eventType": {
+            "id": "eventType",
             "type": "dropdown",
+            "value": null
+          },
+          "operation": {
+            "id": "operation",
+            "type": "dropdown",
+            "value": "insert_row"
+          },
+          "sortBuilder": {
+            "id": "sortBuilder",
+            "type": "sort-builder",
+            "value": null
+          },
+          "watchColumns": {
+            "id": "watchColumns",
+            "type": "dropdown",
+            "value": null
+          },
+          "filterBuilder": {
+            "id": "filterBuilder",
+            "type": "filter-builder",
+            "value": null
+          },
+          "manualTableId": {
+            "id": "manualTableId",
+            "type": "short-input",
+            "value": null
+          },
+          "outputColumns": {
+            "id": "outputColumns",
+            "type": "dropdown",
+            "value": null
+          },
+          "tableSelector": {
+            "id": "tableSelector",
+            "type": "table-selector",
+            "value": null
+          },
+          "includeHeaders": {
+            "id": "includeHeaders",
+            "type": "switch",
+            "value": null
+          },
+          "manualConflictColumn": {
+            "id": "manualConflictColumn",
+            "type": "short-input",
+            "value": null
+          },
+          "conflictColumnSelector": {
+            "id": "conflictColumnSelector",
+            "type": "column-selector",
             "value": null
           }
         },
         "outputs": {
-          "files": {
-            "type": "file[]",
-            "description": "Files the code wrote to /tmp/sim/outputs, ready to attach or upload downstream"
-          },
-          "result": {
+          "row": {
             "type": "json",
-            "description": "Structured result emitted by the executed code"
+            "description": "Inserted row data"
           },
-          "stdout": {
+          "message": {
             "type": "string",
-            "description": "Console log output and debug messages from function execution"
+            "description": "Status message"
+          },
+          "success": {
+            "type": "boolean",
+            "description": "Whether row was inserted"
+          }
+        },
+        "enabled": true,
+        "horizontalHandles": true,
+        "height": 48,
+        "advancedMode": false,
+        "errorEnabled": false,
+        "triggerMode": false,
+        "data": {
+          "canonicalModes": {
+            "tableId": "basic",
+            "sortInput": "basic",
+            "filterInput": "basic",
+            "conflictColumn": "basic"
+          }
+        },
+        "locked": false
+      },
+      "96a456b1-746f-49f0-90ab-98cdf7e6d2c7": {
+        "id": "96a456b1-746f-49f0-90ab-98cdf7e6d2c7",
+        "type": "condition",
+        "name": "Route by Category",
+        "position": {
+          "x": 1080,
+          "y": 300
+        },
+        "subBlocks": {
+          "conditions": {
+            "id": "conditions",
+            "type": "condition-input",
+            "value": "[{\"title\":\"If\",\"value\":\"<jevclassifier.answers.shoe_scope.choice> === 'unrelated' && Number(<jevclassifier.answers.shoe_scope.confidence> ?? 1) >= 0.6\",\"id\":\"96a456b1-746f-49f0-90ab-98cdf7e6d2c7-if\"},{\"title\":\"Else If\",\"value\":\"<jevclassifier.answers.shoe_scope.choice> === 'unclear' || Number(<jevclassifier.answers.shoe_scope.confidence> ?? 1) < 0.6\",\"id\":\"96a456b1-746f-49f0-90ab-98cdf7e6d2c7-else-if-0\"},{\"title\":\"Else If\",\"value\":\"Number(<jevclassifier.answers.category.confidence> ?? 0) < 0.6\",\"id\":\"96a456b1-746f-49f0-90ab-98cdf7e6d2c7-else-if-1\"},{\"title\":\"Else If\",\"value\":\"<jevclassifier.answers.category.choice> === 'billing'\",\"id\":\"96a456b1-746f-49f0-90ab-98cdf7e6d2c7-else-if-2\"},{\"title\":\"Else If\",\"value\":\"<jevclassifier.answers.category.choice> === 'support'\",\"id\":\"96a456b1-746f-49f0-90ab-98cdf7e6d2c7-else-if-3\"},{\"title\":\"Else If\",\"value\":\"<jevclassifier.answers.category.choice> === 'sales'\",\"id\":\"96a456b1-746f-49f0-90ab-98cdf7e6d2c7-else-if-4\"},{\"title\":\"Else If\",\"value\":\"<jevclassifier.answers.category.choice> === 'return'\",\"id\":\"96a456b1-746f-49f0-90ab-98cdf7e6d2c7-else-if-5\"},{\"title\":\"Else If\",\"value\":\"<jevclassifier.answers.category.choice> === 'shipping'\",\"id\":\"96a456b1-746f-49f0-90ab-98cdf7e6d2c7-else-if-6\"},{\"title\":\"Else\",\"value\":\"\",\"id\":\"96a456b1-746f-49f0-90ab-98cdf7e6d2c7-else\"}]"
+          }
+        },
+        "outputs": {
+          "selectedPath": {
+            "type": "json",
+            "description": "Selected execution path"
+          },
+          "selectedTitle": {
+            "type": "string",
+            "description": "Title of the selected branch (e.g. \"if\", \"else if\", \"else\"); null when no branch fired"
+          },
+          "selectedOption": {
+            "type": "string",
+            "description": "Selected condition option ID"
+          },
+          "conditionResult": {
+            "type": "boolean",
+            "description": "Whether the selected branch's own test passed: true when an if/else-if condition matched, false when the else branch or no branch fired"
           }
         },
         "enabled": true,
@@ -960,6 +1018,15 @@
         "data": {}
       },
       {
+        "id": "c6f78300-1879-469c-bc79-41b1cd6a06d2",
+        "source": "08404c72-174a-4e81-aa8f-672bd9793860",
+        "target": "a9cbf077-6e67-4fb5-ae0f-ad627b554b38",
+        "sourceHandle": "source",
+        "targetHandle": "target",
+        "type": "default",
+        "data": {}
+      },
+      {
         "id": "0003f4cc-fe63-4cc6-a0e1-cc79b74eebd6",
         "source": "583a0cf5-ce74-40ba-afe6-feacff15576a",
         "target": "fc447c9b-7a50-4ec7-a612-34bbafbe06dc",
@@ -973,9 +1040,9 @@
     "parallels": {},
     "variables": {},
     "metadata": {
-      "name": "route-customer-service-jev-llm",
+      "name": "wflow-3-jev-and-llm",
       "description": "",
-      "exportedAt": "2026-11-16T17:30:19.073Z"
+      "exportedAt": "2026-11-18T18:40:10.646Z"
     }
   }
 }
